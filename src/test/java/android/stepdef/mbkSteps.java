@@ -9,7 +9,9 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.appium.java_client.android.AndroidElement;
+import javafx.scene.control.Tab;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 import java.io.File;
@@ -1340,5 +1342,24 @@ public class mbkSteps extends TestBase {
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + feePayer + "']")).click();
         androidDriver.findElement(By.id("com.vnpay.hdbank:id/content")).sendKeys(description);
         androidDriver.findElement(By.xpath("//android.widget.Button[@text='Tiếp tục']")).click();
+    }
+
+    @Then("^I add new account with \"([^\"]*)\" bank, \"([^\"]*)\" account number and \"([^\"]*)\" receiver$")
+    public void iAddNewAccountWithBankAccountNumberAndReceiver(String bank, String accountNumber, String receiver) throws Exception {
+        waitElement(By.xpath("//android.widget.LinearLayout[@index='1']/android.widget.FrameLayout[@index='2']/android.widget.ImageView[@index='1']"));
+        androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='1']/android.widget.FrameLayout[@index='2']/android.widget.ImageView[@index='1']")).click();
+        waitElement(By.xpath("//android.widget.FrameLayout[@index='2']/android.widget.ImageView"));
+        androidDriver.findElement(By.xpath("//android.widget.FrameLayout[@index='2']/android.widget.ImageView")).click();
+        waitElement(By.xpath("//android.widget.TextView[@text='Ngân hàng']"));
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Ngân hàng']")).click();
+        waitElement(By.xpath("//android.widget.TextView[@text='Danh sách ngân hàng']"));
+        androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Tìm kiếm ngân hàng']")).sendKeys(bank);
+        waitElement(By.xpath("//android.support.v7.widget.RecyclerView[@index='2']"));
+        androidDriver.findElement(By.xpath("//android.support.v7.widget.RecyclerView[@index='2']")).click();
+        waitElement(By.xpath("//android.widget.EditText[@text='Nhập số tài khoản']"));
+        androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Nhập số tài khoản']")).sendKeys(accountNumber);
+        androidDriver.findElement(By.xpath("//android.widget.Button[@text='Lưu lại']")).click();
+        waitElement(By.xpath("//android.widget.TextView[@text='Chuyển khoản']"));
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Chuyển khoản']")).click();
     }
 }
