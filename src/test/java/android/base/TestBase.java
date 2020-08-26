@@ -101,6 +101,48 @@ public class TestBase {
         androidDriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
 
+    public static void AndroidInput() {
+        String fileName = "app-release.apk";
+//        File appRelease = new File("D:\\Android SDK\\platforms\\" + fileName);
+        File appRelease = new File(System.getProperty("user.dir") + "\\drivers\\" + fileName);
+        DesiredCapabilities cap = new DesiredCapabilities();
+        cap.setCapability("app", appRelease.getAbsolutePath());
+        cap.setCapability("platformName", "android");
+        cap.setCapability("deviceName", "D0AA002307J82106840");
+        cap.setCapability("appPackage", "com.vnpay.hdbank");
+        cap.setCapability("appActivity", "com.vnpay.hdbank.activity.SplashActivity");
+        cap.setCapability("platformVersion", "10.0");
+        // prevent Android: don’t uninstall app before new session
+        cap.setCapability("noReset", "true");
+        try {
+            androidDriver = new AndroidDriver(new URL("http://10.0.114.42:4723/wd/hub"), cap);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        androidDriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+    }
+
+    public static void AndroidApproval() {
+        String fileName = "app-release.apk";
+//        File appRelease = new File("D:\\Android SDK\\platforms\\" + fileName);
+        File appRelease = new File(System.getProperty("user.dir") + "\\drivers\\" + fileName);
+        DesiredCapabilities cap = new DesiredCapabilities();
+        cap.setCapability("app", appRelease.getAbsolutePath());
+        cap.setCapability("platformName", "android");
+        cap.setCapability("deviceName", "988a1b37463155383730");
+        cap.setCapability("appPackage", "com.vnpay.hdbank");
+        cap.setCapability("appActivity", "com.vnpay.hdbank.activity.SplashActivity");
+        cap.setCapability("platformVersion", "9.0");
+        // prevent Android: don’t uninstall app before new session
+        cap.setCapability("noReset", "true");
+        try {
+            androidDriver = new AndroidDriver(new URL("http://10.0.114.42:4723/wd/hub"), cap);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        androidDriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+    }
+
     public void waitElement(By element) throws Exception {
         WebDriverWait wait = new WebDriverWait(androidDriver, 120);
         wait.until(ExpectedConditions.visibilityOfElementLocated(element));
