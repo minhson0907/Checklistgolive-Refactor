@@ -76,32 +76,33 @@ public class mbkSteps extends TestBase {
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Đăng nhập']")).click();
     }
 
-    @When("^As (KHCN|KHDN), I login with \"([^\"]*)\" and \"([^\"]*)\"$")
+    @When("^As (input|approval) user, I login with \"([^\"]*)\" and \"([^\"]*)\"$")
     public void asKHDNILoginWithAnd(String type, String user, String pass) throws Exception {
-        switch (type) {
-            default:
-                try {
-                    if (androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='8']/android.widget.RelativeLayout[@index='0']/android.widget.ImageView[@index='2']")).isDisplayed()) {
-                        // Tap on icon x in text box user name
-                        androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='8']/android.widget.RelativeLayout[@index='0']/android.widget.ImageView[@index='2']")).click();
-                    }
-                } catch (Exception e) {
-                    e.getMessage();
-                }
-                androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Tài khoản']")).clear();
-                androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Tài khoản']")).sendKeys(user);
-                androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Mật khẩu']")).clear();
-                androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Mật khẩu']")).sendKeys(pass);
-                androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Đăng nhập']")).click();
-                // Đối với user KHDN trên mobile khi kg install apk thì user login lần đầu tiên sẽ bắt hỏi OTP, các lần sau thì kg hỏi nữa
-                try {
-                    if (androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='1']/android.widget.TextView[@index='2']")).isDisplayed()) {
-                        androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='1']/android.widget.TextView[@index='2']")).sendKeys("123456");
-                    }
-                } catch (Exception e) {
-                    e.getMessage();
-                }
+        try {
+            if (androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='8']/android.widget.RelativeLayout[@index='0']/android.widget.ImageView[@index='2']")).isDisplayed()) {
+                // Tap on icon x in text box user name
+                androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='8']/android.widget.RelativeLayout[@index='0']/android.widget.ImageView[@index='2']")).click();
+            }
+        } catch (Exception e) {
+            e.getMessage();
         }
+        switch (type){
+            case"input":
+                androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Tài khoản']")).clear();
+                androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Tài khoản']")).sendKeys(DataHelper.getCellData(1, 2, "userdata"));
+                androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Mật khẩu']")).clear();
+                byte[] decodeBytes1 = Base64.getDecoder().decode(DataHelper.getCellData(1, 6, "userdata").getBytes());
+                androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Mật khẩu']")).sendKeys(new String(decodeBytes1));
+                break;
+            case"approval":
+                androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Tài khoản']")).clear();
+                androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Tài khoản']")).sendKeys(DataHelper.getCellData(1, 3, "userdata"));
+                androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Mật khẩu']")).clear();
+                byte[] decodeBytes2 = Base64.getDecoder().decode(DataHelper.getCellData(1, 7, "userdata").getBytes());
+                androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Mật khẩu']")).sendKeys(new String(decodeBytes2));
+                break;
+        }
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Đăng nhập']")).click();
     }
 
     @Then("^I go to Home$")
@@ -127,6 +128,17 @@ public class mbkSteps extends TestBase {
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + DataHelper.getCellData(1, 1, "userdata") + "']")).click();
     }
 
+    @And("^As KHDN, I do transaction from \"([^\"]*)\" account with type is \"([^\"]*)\"$")
+    public void asKHDNiDoTransactionWithTypeIs(String accountNumber, String type) throws Exception {
+        waitElement(By.xpath("//android.widget.TextView[@text='" + type + "']"));
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + type + "']")).click();
+        Thread.sleep(1000);
+        androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.LinearLayout[@index='1']/android.widget.TextView")).click();
+        Thread.sleep(1000);
+//        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + accountNumber + "']")).click();
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + DataHelper.getCellData(1, 4, "userdata") + "']")).click();
+    }
+
     private double getBeforeAmount() throws Exception {
         Thread.sleep(3000);
         //        List<?> text = androidDriver.findElements(By.xpath("//android.widget.TextView[contains(@text,'VND')]"));
@@ -145,8 +157,11 @@ public class mbkSteps extends TestBase {
 
     @Then("^I transfer to \"([^\"]*)\" account, \"([^\"]*)\" amount and \"([^\"]*)\" description with fee payer is \"([^\"]*)\"$")
     public void iTransferFromToAccountAmountAndDescriptionWithFeePayerIs(String toAccount, String amount, String description, String feePayer) throws Exception {
-//        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='"+ fromAccount +"']")).click();
-//        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='"+fromAccount+"']")).click();
+        waitElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.LinearLayout[@index='1']/android.widget.TextView"));
+        androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.LinearLayout[@index='1']/android.widget.TextView")).click();
+        Thread.sleep(1000);
+//        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + accountNumber + "']")).click();
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + DataHelper.getCellData(1, 4, "userdata") + "']")).click();
         androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Số tài khoản *']")).sendKeys(toAccount);
         androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Số tiền *']")).sendKeys(amount);
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Người chuyển trả']")).click();
@@ -171,28 +186,6 @@ public class mbkSteps extends TestBase {
         System.out.println("**************** Data table " + actualString1);
         assertTrue(actualString1.contains(text1));
         assertTrue(actualString2.contains(text2));
-    }
-
-    @And("^I verify \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" is displayed after doing transaction successfully$")
-    public void iVerifyIsDisplayedAfterDoingTransactionSuccessfully(String text1, String text2, String text3) throws Exception {
-        waitElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.TextView[@index='0']"));
-        String actualString = androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.TextView[@index='0']")).getText();
-        System.out.println("**************** Data table " + actualString);
-        assertTrue(actualString.contains(text1));
-        assertTrue(actualString.contains(text2));
-        assertTrue(actualString.contains(text3));
-    }
-
-    @And("^I confirm the above transaction$")
-    public void iConfirmTheAboveTransaction() throws Exception {
-        try {
-            if (androidDriver.isKeyboardShown()) {
-                androidDriver.hideKeyboard();
-            }
-        } catch (Exception e) {
-            e.getMessage();
-        }
-        androidDriver.findElement(By.xpath("//android.widget.Button[@text='Xác nhận']")).click();
     }
 
     private double getFee() throws Exception {
@@ -356,44 +349,6 @@ public class mbkSteps extends TestBase {
         androidDriver.findElement(By.xpath("//android.widget.Button[@text='Tiếp tục']")).click();
     }
 
-    @And("^I get transferred amount (in payment service|when booking train ticket)$")
-    public void iGetTransferredAmountInPaymentService(String type) throws Exception {
-        switch (type) {
-            default:
-                Thread.sleep(1000);
-                List<AndroidElement> transferredAmountList = (List<AndroidElement>) androidDriver.findElements(By.xpath("//android.widget.TextView[contains(@text,'VND')]"));
-                String transferredAmount = transferredAmountList.get(1).getText();
-                transferredAmount = transferredAmount.replace(" VND", "");
-                transferredAmount = transferredAmount.replace(",", "");
-                System.out.println("**************** Transferred Amount   " + transferredAmount);
-                d_transferredAmount = Double.parseDouble(transferredAmount);
-        }
-    }
-
-    @Then("^I get amount total after doing transaction in payment service$")
-    public void iGetAmountTotalAfterDoingTransactionInPaymentService() throws Exception {
-        Thread.sleep(15000);
-        scrollToUp();
-        List<AndroidElement> afterAmountList = (List<AndroidElement>) androidDriver.findElements(By.xpath("//android.widget.TextView[contains(@text,'VND')]"));
-        String afterAmount = afterAmountList.get(2).getText();
-        afterAmount = afterAmount.replace(" VND", "");
-        afterAmount = afterAmount.replace(",", "");
-        System.out.println("**************** After Amount   " + afterAmount);
-        d_afterAmount = Double.parseDouble(afterAmount);
-    }
-
-    @Then("^I get amount total after doing transaction for topup VietJetAir$")
-    public void iGetAmountTotalAfterDoingTransactionForTopupVietJetAir() throws Exception {
-        Thread.sleep(15000);
-        scrollToUp();
-        List<AndroidElement> afterAmountList = (List<AndroidElement>) androidDriver.findElements(By.xpath("//android.widget.TextView[contains(@text,'VND')]"));
-        String afterAmount = afterAmountList.get(1).getText();
-        afterAmount = afterAmount.replace(" VND", "");
-        afterAmount = afterAmount.replace(",", "");
-        System.out.println("**************** After Amount   " + afterAmount);
-        d_afterAmount = Double.parseDouble(afterAmount);
-    }
-
     @And("^I looking for the hotel in \"([^\"]*)\"$")
     public void iLookingForTheHotelAroundMe(String location) throws Exception {
         try {
@@ -430,43 +385,6 @@ public class mbkSteps extends TestBase {
         }
     }
 
-    @And("^I get amount total before doing transaction in (hotel|train) booking$")
-    public void iGetAmountTotalBeforeDoingTransactionInHotelBooking(String type) throws Exception {
-        switch (type) {
-            default:
-                List<AndroidElement> transferredAmountList = (List<AndroidElement>) androidDriver.findElements(By.xpath("//android.widget.TextView[contains(@text,'VND')]"));
-                String transferredAmount = transferredAmountList.get(0).getText();
-                transferredAmount = transferredAmount.replace(" VND", "");
-                transferredAmount = transferredAmount.replace(",", "");
-                System.out.println("**************** Before Amount   " + transferredAmount);
-                d_beforeAmount = Double.parseDouble(transferredAmount);
-        }
-    }
-
-    @And("^I get booking amount in hotel booking$")
-    public void iGetBookingAmountInHotelBooking() throws Exception {
-        List<AndroidElement> feeList = (List<AndroidElement>) androidDriver.findElements(By.xpath("//android.widget.TextView[contains(@text,'VND')]"));
-        String fee = feeList.get(1).getText();
-        fee = fee.replace(" VND", "");
-        fee = fee.replace(",", "");
-        System.out.println("**************** Transferred Amount   " + fee);
-        d_transferredAmount = Double.parseDouble(fee);
-    }
-
-    @And("^I get amount total after doing transaction in (hotel|train ticket) booking$")
-    public void iGetAmountTotalAfterDoingTransactionInHotelBooking(String type) throws Exception {
-        switch (type) {
-            default:
-                Thread.sleep(15000);
-                List<AndroidElement> feeList = (List<AndroidElement>) androidDriver.findElements(By.xpath("//android.widget.TextView[contains(@text,'VND')]"));
-                String fee = feeList.get(1).getText();
-                fee = fee.replace(" VND", "");
-                fee = fee.replace(",", "");
-                System.out.println("**************** After Amount   " + fee);
-                d_afterAmount = Double.parseDouble(fee);
-        }
-    }
-
     @And("^I topup \"([^\"]*)\" into \"([^\"]*)\" phone number$")
     public void iTopup(String card, String phoneNumber) throws Exception {
         try {
@@ -483,49 +401,16 @@ public class mbkSteps extends TestBase {
         androidDriver.findElement(By.xpath("//android.widget.Button[@text='Tiếp tục']")).click();
     }
 
-    @And("^I get amount total before doing transaction in topup mobile$")
-    public void iGetAmountTotalBeforeDoingTransactionInTopupMobile() throws Exception {
-        List<AndroidElement> transferredAmountList = (List<AndroidElement>) androidDriver.findElements(By.xpath("//android.widget.TextView[contains(@text,'VND')]"));
-        String transferredAmount = transferredAmountList.get(0).getText();
-        transferredAmount = transferredAmount.replace(" VND", "");
-        transferredAmount = transferredAmount.replace(",", "");
-        System.out.println("**************** Before Amount   " + transferredAmount);
-        d_beforeAmount = Double.parseDouble(transferredAmount);
-    }
-
-    @And("^I get amount for topup mobile$")
-    public void iGetAmountForTopupMobile() throws Exception {
-        List<AndroidElement> feeList = (List<AndroidElement>) androidDriver.findElements(By.xpath("//android.widget.TextView[contains(@text,'VND')]"));
-        String fee = feeList.get(1).getText();
-        fee = fee.replace(" VND", "");
-        fee = fee.replace(",", "");
-        System.out.println("**************** Transferred Amount   " + fee);
-        d_transferredAmount = Double.parseDouble(fee);
-    }
-
-    @And("^I get amount total after doing transaction in topup mobile$")
-    public void iGetAmountTotalAfterDoingTransactionInTopupMobile() throws Exception {
-        Thread.sleep(10000);
-        List<AndroidElement> feeList = (List<AndroidElement>) androidDriver.findElements(By.xpath("//android.widget.TextView[contains(@text,'VND')]"));
-        String fee = feeList.get(1).getText();
-        fee = fee.replace(" VND", "");
-        fee = fee.replace(",", "");
-        System.out.println("**************** After Amount   " + fee);
-        d_afterAmount = Double.parseDouble(fee);
-    }
-
     @And("^As KHDN, I do transaction with type is \"([^\"]*)\" in Home page 1$")
     public void asKHDNIDoTransactionWithTypeIsInHomePage1(String type) throws Exception {
-        Thread.sleep(4000);
-        try {
-            if (androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.ImageView[@index='1']")).isDisplayed()) {
-                androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.ImageView[@index='1']")).click();
-            }
-        } catch (Exception e) {
-            e.getMessage();
-        }
-        Thread.sleep(3000);
         waitElement(By.xpath("//android.widget.TextView[contains(@text,'" + type + "')]"));
+//        try {
+//            if (androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.ImageView[@index='1']")).isDisplayed()) {
+//                androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.ImageView[@index='1']")).click();
+//            }
+//        } catch (Exception e) {
+//            e.getMessage();
+//        }
         androidDriver.findElement(By.xpath("//android.widget.TextView[contains(@text,'" + type + "')]")).click();
     }
 
@@ -566,92 +451,6 @@ public class mbkSteps extends TestBase {
         waitElement(By.xpath("//android.widget.Button[@text='Đồng ý']"));
         androidDriver.findElement(By.xpath("//android.widget.Button[@text='Đồng ý']")).click();
         androidDriver.findElement(By.xpath("//android.widget.Button[@text='Xác nhận']")).click();
-    }
-
-    @Then("^I create NonKYC account with \"([^\"]*)\" phone number and \"([^\"]*)\" email$")
-    public void iCreateNonKYCAccountWithPhoneNumberAndEmail(String phoneNumber, String email) throws Exception {
-        androidDriver.findElement(By.id("com.android.permissioncontroller:id/permission_allow_button")).click();
-        androidDriver.findElement(By.id("com.android.permissioncontroller:id/permission_allow_button")).click();
-        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Đăng ký']")).click();
-        androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Số điện thoại *']")).sendKeys(phoneNumber);
-        androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Email']")).sendKeys(email);
-        androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='2']/android.widget.ImageView[@index='0']")).click();
-        androidDriver.findElement(By.xpath("//android.widget.Button[@text='Đăng ký']")).click();
-    }
-
-    @And("^I continue to create account with password is \"([^\"]*)\"$")
-    public void iContinueToCreateAccountWithPasswordIs(String pwd) throws Exception {
-        waitElement(By.xpath("//android.widget.LinearLayout[@index='1']/android.widget.TextView[@resource-id='com.vnpay.hdbank:id/c']"));
-        List<WebElement> text = (List<WebElement>) androidDriver.findElements(By.xpath("//android.widget.LinearLayout[@index='1']/android.widget.TextView[@resource-id='com.vnpay.hdbank:id/c']"));
-        text.get(1).sendKeys("123456");
-        androidDriver.findElement(By.xpath("//android.widget.Button[@text='Tiếp tục']")).click();
-        androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Mật khẩu *']")).sendKeys(pwd);
-        androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Xác nhận lại mật khẩu *']")).sendKeys(pwd);
-        androidDriver.findElement(By.xpath("//android.widget.Button[@text='Tiếp tục']")).click();
-    }
-
-    @And("^I get account number for (NonKYC|eKYC|KYC) account$")
-    public void iGetAccountNumberForNonKYCAccount(String type) throws Exception {
-        switch (type) {
-            default:
-                waitElement(By.id("com.vnpay.hdbank:id/title"));
-                List<WebElement> list = (List<WebElement>) androidDriver.findElements(By.id("com.vnpay.hdbank:id/title"));
-                accountNumber = list.get(1).getText();
-                System.out.println("=============== account number " + accountNumber);
-        }
-    }
-
-    @Then("^I transfer from \"([^\"]*)\" to (NonKYC|eKYC|KYC) account, \"([^\"]*)\" amount and \"([^\"]*)\" description with fee payer is \"([^\"]*)\"$")
-    public void iTransferFromToKYCAccountAmountAndDescriptionWithFeePayerIs(String fromAccount, String type, String amount, String description, String feePayer) throws Exception {
-        switch (type) {
-            default:
-//                androidDriver.findElement(By.xpath("//android.widget.TextView[@text='"+ fromAccount +"']")).click();
-//                androidDriver.findElement(By.xpath("//android.widget.TextView[@text='"+fromAccount+"']")).click();
-                androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Số tài khoản *']")).sendKeys(accountNumber);
-                androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Số tiền *']")).sendKeys(amount);
-                androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Người chuyển trả']")).click();
-                androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + feePayer + "']")).click();
-                androidDriver.findElement(By.id("com.vnpay.hdbank:id/content")).sendKeys(description);
-                androidDriver.findElement(By.xpath("//android.widget.Button[@text='Tiếp tục']")).click();
-        }
-    }
-
-
-    @And("^I go to \"([^\"]*)\" from \"([^\"]*)\" account$")
-    public void iGoToFromAccount(String history, String account) throws Exception {
-        waitElement(By.xpath("//android.widget.TextView[@text='" + account + "']"));
-        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + account + "']")).click();
-        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + history + "']")).click();
-    }
-
-    @And("^I go to \"([^\"]*)\" from \"([^\"]*)\" is \"([^\"]*)\"$")
-    public void iGoToFromIs(String history, String account, String accountNumber) throws Exception {
-        waitElement(By.xpath("//android.widget.TextView[@text='" + account + "']"));
-        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + account + "']")).click();
-        waitElement(By.xpath("//android.widget.TextView[@text='" + accountNumber + "']"));
-        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + accountNumber + "']")).click();
-        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + history + "']")).click();
-    }
-
-    @Then("^I verify \"([^\"]*)\" \"([^\"]*)\" is displayed at row (1|2|3) in mini statement$")
-    public void iVerifyIsDisplayedInMiniStatement(String text1, String text2, String row) throws Exception {
-        List<WebElement> list1 = (List<WebElement>) androidDriver.findElements(By.id("com.vnpay.hdbank:id/content"));
-        List<WebElement> list2 = (List<WebElement>) androidDriver.findElements(By.xpath("//android.support.v7.widget.RecyclerView/android.widget.LinearLayout/android.widget.TextView"));
-        switch (row) {
-            case "1":
-                assertEquals(list1.get(0).getText(), text1);
-                assertEquals(list2.get(0).getText(), text2);
-                break;
-            case "2":
-                assertEquals(list1.get(1).getText(), text1);
-                assertEquals(list2.get(1).getText(), text2);
-                break;
-            case "3":
-                assertEquals(list1.get(2).getText(), text1);
-                assertEquals(list2.get(2).getText(), text2);
-                break;
-        }
-
     }
 
     @And("^I update \"([^\"]*)\" account with type is (Chuyển khoản thông thường|Chuyển khoản tự động)$")
@@ -700,6 +499,7 @@ public class mbkSteps extends TestBase {
         scrollToUp();
         Thread.sleep(2000);
         scrollToUp();
+        waitElement(By.xpath("//android.widget.TextView[@text='" + provider + "']"));
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + provider + "']")).click();
         androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Mã khách hàng *']")).sendKeys(customerID);
         androidDriver.findElement(By.xpath("//android.widget.Button[@text='Tiếp tục']")).click();
@@ -775,36 +575,6 @@ public class mbkSteps extends TestBase {
         androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='2']/android.widget.LinearLayout[@index='1']/android.widget.TextView")).click();
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + method + "']")).click();
         androidDriver.findElement(By.xpath("//android.widget.Button[@text='Tiếp tục']")).click();
-    }
-
-    @Then("^I get amount total after doing transaction for saving account$")
-    public void iGetAmountTotalAfterDoingTransactionForSavingAccount() throws Exception {
-        Thread.sleep(15000);
-        scrollToUp();
-        List<AndroidElement> afterAmountList = (List<AndroidElement>) androidDriver.findElements(By.xpath("//android.widget.TextView[contains(@text,'VND')]"));
-        String afterAmount = afterAmountList.get(1).getText();
-        afterAmount = afterAmount.replace(" VND", "");
-        afterAmount = afterAmount.replace(",", "");
-        System.out.println("**************** After Amount   " + afterAmount);
-        d_afterAmount = Double.parseDouble(afterAmount);
-    }
-
-    @And("^I get saving amount for opening saving account$")
-    public void iGetSavingAmountForOpeningSavingAccount() throws Exception {
-        Thread.sleep(1000);
-        List<AndroidElement> transferredAmountList = (List<AndroidElement>) androidDriver.findElements(By.xpath("//android.widget.TextView[contains(@text,'VND')]"));
-        String transferredAmount = transferredAmountList.get(0).getText();
-        transferredAmount = transferredAmount.replace(" VND", "");
-        transferredAmount = transferredAmount.replace(",", "");
-        System.out.println("**************** Transferred Amount   " + transferredAmount);
-        d_transferredAmount = Double.parseDouble(transferredAmount);
-        try {
-            if (androidDriver.isKeyboardShown()) {
-                androidDriver.hideKeyboard();
-            }
-        } catch (Exception e) {
-            e.getMessage();
-        }
     }
 
     @Then("^I choose \"([^\"]*)\" to open online saving account$")
@@ -950,32 +720,9 @@ public class mbkSteps extends TestBase {
         Thread.sleep(10000);
     }
 
-    @And("^I get amount total before doing transaction for booking airline$")
-    public void iGetAmountTotalBeforeDoingTransactionForBookingAirline() throws Exception {
-        waitElement(By.xpath("//android.widget.TextView[@text='Thanh toán vé máy bay']"));
-        List<AndroidElement> transferredAmountList = (List<AndroidElement>) androidDriver.findElements(By.xpath("//android.widget.TextView[contains(@text,'VND')]"));
-        String transferredAmount = transferredAmountList.get(0).getText();
-        transferredAmount = transferredAmount.replace(" VND", "");
-        transferredAmount = transferredAmount.replace(",", "");
-        System.out.println("**************** Before Amount   " + transferredAmount);
-        d_beforeAmount = Double.parseDouble(transferredAmount);
-        Thread.sleep(1000);
-    }
-
     @And("^I continue to book the above flight$")
     public void iContinueToBookTheAboveFlight() throws Exception {
         androidDriver.findElement(By.xpath("//android.widget.Button[@text='Tiếp tục']")).click();
-    }
-
-    @And("^I get amount total after doing transaction for booking airline$")
-    public void iGetAmountTotalAfterDoingTransactionForBookingAirline() throws Exception {
-        Thread.sleep(3000);
-        //        List<?> text = androidDriver.findElements(By.xpath("//android.widget.TextView[contains(@text,'VND')]"));
-        String afterAmount = androidDriver.findElement(By.xpath("//android.widget.TextView[contains(@text,'VND')]")).getText();
-        afterAmount = afterAmount.replace(" VND", "");
-        afterAmount = afterAmount.replace(",", "");
-        System.out.println("**************** After Amount   " + afterAmount);
-        d_afterAmount = Double.parseDouble(afterAmount);
     }
 
     @Then("^I choose \"([^\"]*)\" departure's baggage and \"([^\"]*)\" return's baggage$")
@@ -1200,7 +947,8 @@ public class mbkSteps extends TestBase {
     public void iInputSoftHDBank(String code) throws Exception {
         try {
             if (androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='1']/android.widget.TextView[@index='1']")).isDisplayed()) {
-                androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='1']/android.widget.TextView[@index='1']")).sendKeys(code);
+                byte[] decodeBytes = Base64.getDecoder().decode(DataHelper.getCellData(1, 8, "userdata").getBytes());
+                androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='1']/android.widget.TextView[@index='1']")).sendKeys(new String(decodeBytes));
             }
         } catch (Exception e) {
             e.getMessage();
