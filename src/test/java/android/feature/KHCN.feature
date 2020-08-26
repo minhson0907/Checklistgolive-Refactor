@@ -16,6 +16,7 @@ Feature: KHCN
     Then I login with "user_live" and "password"
     And I do transaction from "002704070016025" account with type is "CK ngoài HD"
     And I get amount total before doing transaction
+    Then I add new account with "ACB" bank, "249515269" account number and "VO MINH SON" receiver
     And I update "249515269" account with type is Chuyển khoản thông thường
     Then I transfer to "ACB" bank, "249515269" account, "VO MINH SON" receiver, "1" amount and "AUTO EXTERNAL TRANSFER 04" description with fee payer is "Người chuyển trả"
     Then I input soft HDBank with code is "112233"
