@@ -347,9 +347,11 @@ public class mbkSteps extends TestBase {
 
     @And("^I do paying an electronic bill from \"([^\"]*)\" account with customer ID is \"([^\"]*)\"$")
     public void iDoPayingAnElectronicBillFromAccountWithCustomerCodeIs(String fromAccount, String customerCode) throws Exception {
+        waitElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.LinearLayout[@index='1']/android.widget.TextView"));
         androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.LinearLayout[@index='1']/android.widget.TextView")).click();
         Thread.sleep(1000);
-        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + fromAccount + "']")).click();
+//        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + fromAccount + "']")).click();
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + DataHelper.getCellData(1, 1, "userdata") + "']")).click();
         androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Mã khách hàng *']")).sendKeys(customerCode);
         androidDriver.findElement(By.xpath("//android.widget.Button[@text='Tiếp tục']")).click();
     }
@@ -672,9 +674,11 @@ public class mbkSteps extends TestBase {
 
     @And("^I do paying bill from \"([^\"]*)\" account to \"([^\"]*)\" provider with customer ID is \"([^\"]*)\"$")
     public void iDoPayingAnWaterBillFromAccountToProviderWithCustomerIDIs(String fromAccount, String provider, String customerID) throws Exception {
+        waitElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.LinearLayout[@index='1']/android.widget.TextView"));
         androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.LinearLayout[@index='1']/android.widget.TextView")).click();
         Thread.sleep(1000);
-        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + fromAccount + "']")).click();
+//        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + fromAccount + "']")).click();
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + DataHelper.getCellData(1, 1, "userdata") + "']")).click();
         Thread.sleep(1000);
         androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.LinearLayout[@index='1']/android.widget.TextView[@index='1']")).click();
         waitElement(By.xpath("//android.widget.TextView[@text='Chọn nhà cung cấp']"));
@@ -685,9 +689,11 @@ public class mbkSteps extends TestBase {
 
     @And("^I do paying bill from \"([^\"]*)\" account to \"([^\"]*)\" provider with code ID is \"([^\"]*)\"$")
     public void iDoPayingAnWaterBillFromAccountToProviderWithCodeIDIs(String fromAccount, String provider, String customerID) throws Exception {
+        waitElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.LinearLayout[@index='1']/android.widget.TextView"));
         androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.LinearLayout[@index='1']/android.widget.TextView")).click();
         Thread.sleep(1000);
-        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + fromAccount + "']")).click();
+//        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + fromAccount + "']")).click();
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + DataHelper.getCellData(1, 1, "userdata") + "']")).click();
         Thread.sleep(1000);
         androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.LinearLayout[@index='1']/android.widget.TextView[@index='1']")).click();
         waitElement(By.xpath("//android.widget.TextView[@text='Chọn nhà cung cấp']"));
@@ -701,9 +707,11 @@ public class mbkSteps extends TestBase {
 
     @And("^I do paying bill from \"([^\"]*)\" account to (VietJet - Thanh toán cước vé máy bay nội địa|Thanh toán vé đặt qua VNPAY) provider with the above reservation code$")
     public void iDoPayingBillFromAccountToProviderWithReservationCodeIs(String fromAccount, String type) throws Exception {
+        waitElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.LinearLayout[@index='1']/android.widget.TextView"));
         androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.LinearLayout[@index='1']/android.widget.TextView")).click();
         Thread.sleep(1000);
-        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + fromAccount + "']")).click();
+//        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + fromAccount + "']")).click();
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + DataHelper.getCellData(1, 1, "userdata") + "']")).click();
         androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.LinearLayout[@index='1']/android.widget.TextView[@index='1']")).click();
         Thread.sleep(1000);
         switch (type) {
@@ -721,6 +729,7 @@ public class mbkSteps extends TestBase {
 
     @And("^I do paying bill from \"([^\"]*)\" account to (FECredit|HD SAIGON|HomeCredit) provider, \"([^\"]*)\" contract number and \"([^\"]*)\" amount with description is \"([^\"]*)\"$")
     public void iDoPayingBillFromAccountToFECreditProviderContractNumberAndAmountWithDescriptionIs(String fromAccount, String type, String contractNumber, String amount, String description) throws Exception {
+       waitElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.LinearLayout[@index='1']/android.widget.TextView"));
         androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.LinearLayout[@index='1']/android.widget.TextView")).click();
         Thread.sleep(1000);
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + fromAccount + "']")).click();
@@ -752,9 +761,11 @@ public class mbkSteps extends TestBase {
 
     @Then("^I open online saving account from \"([^\"]*)\" account, \"([^\"]*)\" amount, \"([^\"]*)\" terms with method is \"([^\"]*)\"$")
     public void iOpenOnlineSavingAccountFromAccountAmountTermsWithMethodIs(String fromAccount, String amount, String terms, String method) throws Exception {
+        waitElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.LinearLayout[@index='1']/android.widget.TextView"));
         androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.LinearLayout[@index='1']/android.widget.TextView")).click();
         Thread.sleep(1000);
-        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + fromAccount + "']")).click();
+//        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + fromAccount + "']")).click();
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + DataHelper.getCellData(1, 1, "userdata") + "']")).click();
         androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Số tiền gửi (VND) *']")).sendKeys(amount);
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Kỳ hạn']")).click();
         Thread.sleep(2000);
@@ -1108,7 +1119,8 @@ public class mbkSteps extends TestBase {
         waitElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.LinearLayout[@index='1']/android.widget.TextView"));
         androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.LinearLayout[@index='1']/android.widget.TextView")).click();
         Thread.sleep(1000);
-        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + fromAccount + "']")).click();
+//        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + fromAccount + "']")).click();
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + DataHelper.getCellData(1, 1, "userdata") + "']")).click();
         // Input AccountTo
         androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Nhập tài khoản thẻ']")).sendKeys(toAccount);
         // Input amount
