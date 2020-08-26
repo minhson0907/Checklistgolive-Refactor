@@ -8,7 +8,7 @@ import org.testng.annotations.BeforeClass;
 @CucumberOptions(
         features = {"src/test/java/android/feature"},
         glue = "android",
-        tags = {"@KHCN-02"},
+        tags = {"@KHCN-12,@KHCN-13"},
         plugin = {
                 "html:target/result",
                 "pretty",
