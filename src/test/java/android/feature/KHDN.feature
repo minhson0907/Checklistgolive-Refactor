@@ -15,7 +15,7 @@ Feature: KHDN
     Given I open app
     Then As input user, I login with "autotestnhap" and "abc123"
     And As KHDN, I do transaction with type is "CK trong HD" in Home page 1
-    Then I transfer to "002704070011069" account, "100000" amount and "AUTO DESCRIPTION" description with fee payer is "Người chuyển trả"
+    Then I transfer to "002704070011069" account, "1" amount and "AUTO DESCRIPTION" description with fee payer is "Người chuyển trả"
     Then I input soft HDBank with code is "112233"
     And I verify "GIAO DỊCH ĐÃ ĐƯỢC CHẤP NHẬN VÀ ĐANG CHỜ DUYỆT" is displayed after doing transaction successfully
 
@@ -34,9 +34,9 @@ Feature: KHDN
     Given I open app
     Then As input user, I login with "autotestnhap" and "abc123"
     And As KHDN, I do transaction from "045704070000966" account with type is "CK ngoài HD"
-    Then I add new account with "DONGA BANK" bank, "0129837294" account number and "VO MINH SON" receiver
-    And I update "0129837294" account with type is Chuyển khoản thông thường
-    Then As KHDN, I transfer to "DONGA BANK" bank, "0129837294" account, "NGUYEN VAN NAPAS TEST ONLINE IBFT 247 VN" receiver, "200000" amount and "AUTO EXTERNAL TRANSFER 03" description with fee payer as default
+    Then I add new account with "ACB" bank, "249515269" account number and "VO MINH SON" receiver
+    And I update "249515269" account with type is Chuyển khoản thông thường
+    Then As KHDN, I transfer to "ACB" bank, "249515269" account, "VO MINH SON" receiver, "1" amount and "AUTO EXTERNAL TRANSFER 03" description with fee payer as default
     Then I input soft HDBank with code is "112233"
     And I verify "Loại giao dịch" "Chuyển khoản thường tài khoản đến tài khoản" is displayed after doing transaction successfully
     And I verify "GIAO DỊCH ĐÃ ĐƯỢC CHẤP NHẬN VÀ ĐANG CHỜ DUYỆT" is displayed after doing transaction successfully
@@ -56,9 +56,9 @@ Feature: KHDN
     Given I open app
     Then As input user, I login with "autotestnhap" and "abc123"
     And As KHDN, I do transaction from "045704070000966" account with type is "CK ngoài HD"
-    Then I add new account with "DONGA BANK" bank, "0129837294" account number and "VO MINH SON" receiver
-    And I update "0129837294" account with type is Chuyển khoản tự động
-    Then As KHDN, I transfer to "DONGA BANK" bank, "0129837294" account, "NGUYEN VAN NAPAS TEST ONLINE IBFT 247 VN" receiver, "200000" amount and "AUTO EXTERNAL TRANSFER 03" description with fee payer as default
+    Then I add new account with "ACB" bank, "249515269" account number and "VO MINH SON" receiver
+    And I update "249515269" account with type is Chuyển khoản tự động
+    Then As KHDN, I transfer to "ACB" bank, "249515269" account, "VO MINH SON" receiver, "2" amount and "AUTO EXTERNAL TRANSFER 03" description with fee payer as default
     Then I input soft HDBank with code is "112233"
     And I verify "Loại giao dịch" "Chuyển khoản nhanh 24/7" is displayed after doing transaction successfully
     And I verify "GIAO DỊCH ĐÃ ĐƯỢC CHẤP NHẬN VÀ ĐANG CHỜ DUYỆT" is displayed after doing transaction successfully
@@ -78,7 +78,7 @@ Feature: KHDN
     Given I open app
     Then As input user, I login with "autotestnhap" and "abc123"
     And As KHDN, I do transaction from "045704070000966" account with type is "CK qua thẻ"
-    Then I transfer to "9704060129837294" card number, "200000" amount and "AUTO TRANSFER BY CARD 04" description
+    Then I transfer to "4987666802993375" card number, "1" amount and "AUTO TRANSFER BY CARD 04" description
     Then I input soft HDBank with code is "112233"
     And I verify "GIAO DỊCH ĐÃ ĐƯỢC CHẤP NHẬN VÀ ĐANG CHỜ DUYỆT" is displayed after doing transaction successfully
 
@@ -98,7 +98,7 @@ Feature: KHDN
     Then As input user, I login with "autotestnhap" and "abc123"
     And I do transaction with type is "Thanh toán" in Home page 1
     Then I pay "" bill in "Topup cho đại lý VietjetAir" service
-    And I do paying bill from "045704070000966" account for "37380512" agent code with amount is "1000000"
+    And I do paying bill from "045704070000966" account for "33000056" agent code with amount is "1"
     Then I input soft HDBank with code is "112233"
     And I verify "GIAO DỊCH ĐÃ ĐƯỢC CHẤP NHẬN VÀ ĐANG CHỜ DUYỆT" is displayed after doing transaction successfully
 

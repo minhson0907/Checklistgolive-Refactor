@@ -546,7 +546,8 @@ public class mbkSteps extends TestBase {
         waitElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.LinearLayout[@index='1']/android.widget.TextView"));
         androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.LinearLayout[@index='1']/android.widget.TextView")).click();
         Thread.sleep(1000);
-        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + fromAccount + "']")).click();
+//        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + fromAccount + "']")).click();
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + DataHelper.getCellData(1, 4, "userdata") + "']")).click();
         androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Mã đại lý/Đoàn']")).sendKeys(agentCode);
         androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Số tiền *']")).sendKeys(amount);
         androidDriver.findElement(By.xpath("//android.widget.Button[@text='Tiếp tục']")).click();
