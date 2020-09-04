@@ -52,7 +52,7 @@ Feature: KHDN
     And I verify "THÀNH CÔNG" is displayed
 
   @KHDN-04 @AndroidInput
-  Scenario: Chuyển khoản ngoài citad with user nhập
+  Scenario: Chuyển khoản ngoài napas with user nhập
     Given I open app
     Then As input user, I login with "autotestnhap" and "abc123"
     And As KHDN, I do transaction from "045704070000966" account with type is "CK ngoài HD"
@@ -64,7 +64,7 @@ Feature: KHDN
     And I verify "GIAO DỊCH ĐÃ ĐƯỢC CHẤP NHẬN VÀ ĐANG CHỜ DUYỆT" is displayed after doing transaction successfully
 
   @KHDN-04 @AndroidApproval
-  Scenario: Chuyển khoản ngoài citad with user duyệt
+  Scenario: Chuyển khoản ngoài napas with user duyệt
     Given I open app
     When As approval user, I login with "autotestduyet" and "abc123"
     And As KHDN, I do transaction with type is "Phê duyệt" in Home page 1

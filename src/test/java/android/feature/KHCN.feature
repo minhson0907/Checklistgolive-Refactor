@@ -241,15 +241,15 @@ Feature: KHCN
     And I verify "Số điện thoại" is displayed
     And I verify "Lưu mã QR" is displayed
 
-  @KHCN-18 @UninstallAndroid
-  Scenario: Khóa Thẻ
-    Given I open app
-    Then I login with "user_live" and "password"
-    And I do transaction with type is "Thẻ" in Home page 1
-    And I lock card
-    Then I input soft HDBank with code is "112233"
-    And I verify "GIAO DỊCH THÀNH CÔNG" is displayed
-    And I verify "Lý do khóa thẻ" "Khoa the tam thoi" is displayed after doing transaction successfully
+#  @KHCN-18 @UninstallAndroid
+#  Scenario: Khóa Thẻ
+#    Given I open app
+#    Then I login with "user_live" and "password"
+#    And I do transaction with type is "Thẻ" in Home page 1
+#    And I lock card
+#    Then I input soft HDBank with code is "112233"
+#    And I verify "GIAO DỊCH THÀNH CÔNG" is displayed
+#    And I verify "Lý do khóa thẻ" "Khoa the tam thoi" is displayed after doing transaction successfully
 
 
 

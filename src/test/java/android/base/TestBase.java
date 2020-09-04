@@ -144,7 +144,7 @@ public class TestBase {
     }
 
     public void waitElement(By element) throws Exception {
-        WebDriverWait wait = new WebDriverWait(androidDriver, 120);
+        WebDriverWait wait = new WebDriverWait(androidDriver, 30);
         wait.until(ExpectedConditions.visibilityOfElementLocated(element));
         Thread.sleep(1000);
     }
