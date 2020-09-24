@@ -161,6 +161,21 @@ public class mbkSteps extends TestBase {
         androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.LinearLayout[@index='1']/android.widget.TextView")).click();
         Thread.sleep(1000);
 //        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + accountNumber + "']")).click();
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + DataHelper.getCellData(1, 1, "userdata") + "']")).click();
+        androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Số tài khoản *']")).sendKeys(toAccount);
+        androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Số tiền *']")).sendKeys(amount);
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Người chuyển trả']")).click();
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + feePayer + "']")).click();
+        androidDriver.findElement(By.id("com.vnpay.hdbank:id/content")).sendKeys(description);
+        androidDriver.findElement(By.xpath("//android.widget.Button[@text='Tiếp tục']")).click();
+    }
+
+    @Then("^As KHDN, I transfer to \"([^\"]*)\" account, \"([^\"]*)\" amount and \"([^\"]*)\" description with fee payer is \"([^\"]*)\"$")
+    public void AsKHDNiTransferFromToAccountAmountAndDescriptionWithFeePayerIs(String toAccount, String amount, String description, String feePayer) throws Exception {
+        waitElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.LinearLayout[@index='1']/android.widget.TextView"));
+        androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.LinearLayout[@index='1']/android.widget.TextView")).click();
+        Thread.sleep(1000);
+//        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + accountNumber + "']")).click();
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + DataHelper.getCellData(1, 4, "userdata") + "']")).click();
         androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Số tài khoản *']")).sendKeys(toAccount);
         androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Số tiền *']")).sendKeys(amount);
@@ -377,7 +392,7 @@ public class mbkSteps extends TestBase {
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='THANH TOÁN']")).click();
     }
 
-    @Then("^I continue to book (hotel|the train)$")
+    @Then("^I continue to book (hotel|the train|flower)$")
     public void iContinueToBookHotel(String type) throws Exception {
         switch (type) {
             default:
@@ -468,7 +483,8 @@ public class mbkSteps extends TestBase {
         androidDriver.findElement(By.xpath("//android.widget.Button[@text='Cập nhật']")).click();
         waitElement(By.xpath("//android.widget.TextView[@text='Đồng ý']"));
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Đồng ý']")).click();
-        androidDriver.findElement(By.id("com.vnpay.hdbank:id/title")).click();
+        waitElement(By.xpath("//android.widget.TextView[@text='"+accountNumber+"']"));
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='"+accountNumber+"']")).click();
     }
 
     @And("^I do paying bill from \"([^\"]*)\" account to \"([^\"]*)\" provider with customer ID is \"([^\"]*)\"$")
@@ -1047,6 +1063,7 @@ public class mbkSteps extends TestBase {
         androidDriver.findElement(By.xpath("//android.widget.ImageView[@index='2']")).click();
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Thư viện ảnh']")).click();
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Photos']")).click();
+        scrollToUp();
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Skype']")).click();
         androidDriver.findElement(By.xpath("//android.view.ViewGroup[@index='1']")).click();
     }
@@ -1123,4 +1140,108 @@ public class mbkSteps extends TestBase {
         waitElement(By.xpath("//android.widget.TextView[@text='Chuyển khoản']"));
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Chuyển khoản']")).click();
     }
+
+    @Then("^I order a bouquet with name is \"([^\"]*)\"$")
+    public void iOrderABouquetWithNameIs(String text) throws Exception {
+        try {
+            if (androidDriver.findElement(By.xpath("//android.widget.Button[@text='ALLOW ONLY WHILE USING THE APP']")).isDisplayed()) {
+                androidDriver.findElement(By.xpath("//android.widget.Button[@text='ALLOW ONLY WHILE USING THE APP']")).click();
+            }
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        waitElement(By.xpath("//android.widget.TextView[@text='Đặt mua hoa']"));
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Đặt mua hoa']")).click();
+        waitElement(By.xpath("//android.widget.TextView[@text='"+text+"']"));
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='"+text+"']")).click();
+        waitElement(By.xpath("//android.widget.TextView[@text='Đặt mua hoa']"));
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Đặt mua hoa']")).click();
+        waitElement(By.xpath("//android.widget.TextView[@text='Tiếp tục']"));
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Tiếp tục']")).click();
+    }
+
+    @And("^I fill info as below$")
+    public void iFillInfoAsBelow(DataTable contactInfo) throws  Exception{
+        List<List<String>> data = contactInfo.raw();
+        waitElement(By.xpath("//android.widget.TextView[@text='Thông tin người mua']"));
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Email']")).click();
+        Thread.sleep(1000);
+        androidDriver.findElement(By.xpath("//android.view.ViewGroup[@index='0']/android.view.ViewGroup[@index='3']/android.widget.EditText[@index='1']")).sendKeys(data.get(0).get(0));
+        Thread.sleep(1000);
+        androidDriver.findElement(By.xpath("//android.view.ViewGroup[@index='0']/android.view.ViewGroup[@index='6']/android.widget.ImageView[@index='1']")).click();
+        androidDriver.findElement(By.xpath("//android.view.ViewGroup[@index='0']/android.view.ViewGroup[@index='6']/android.widget.ImageView[@index='1']")).click();
+        Thread.sleep(1000);
+        scrollUpHalf();
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Địa chỉ']")).click();
+        Thread.sleep(1000);
+        try {
+            if (androidDriver.isKeyboardShown()) {
+                androidDriver.hideKeyboard();
+            }
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        androidDriver.findElement(By.xpath("//android.view.ViewGroup[@index='0']/android.view.ViewGroup[@index='9']/android.widget.EditText[@index='1']")).sendKeys(data.get(0).get(1));
+        Thread.sleep(1000);
+        androidDriver.findElement(By.xpath("//android.view.ViewGroup[@index='0']/android.view.ViewGroup[@index='11']/android.widget.ImageView[@index='1']")).click();
+        androidDriver.findElement(By.xpath("//android.view.ViewGroup[@index='0']/android.view.ViewGroup[@index='11']/android.widget.ImageView[@index='1']")).click();
+        waitElement(By.xpath("//android.widget.TextView[@text='Quận 1']"));
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Quận 1']")).click();
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Tiếp tục']")).click();
+    }
+
+    @And("^I give to \"([^\"]*)\" with \"([^\"]*)\" message$")
+    public void iGiveToWithMessage(String text1, String text2) throws Exception {
+        waitElement(By.xpath("//android.widget.TextView[@text='Đặt hàng']"));
+        androidDriver.findElement(By.xpath("//android.view.ViewGroup[@index='0']/android.view.ViewGroup[@index='0']/android.widget.ImageView[@index='1']")).click();
+        waitElement(By.xpath("//android.widget.TextView[@text='Chọn']"));
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Chọn']")).click();
+        androidDriver.findElement(By.xpath("//android.view.ViewGroup[@index='0']/android.view.ViewGroup[@index='1']/android.widget.ImageView[@index='1']")).click();
+        waitElement(By.xpath("//android.widget.TextView[@text='Chọn']"));
+        verticalScroll();
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Chọn']")).click();
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Thiệp gửi tặng cho']")).click();
+        waitElement(By.xpath("//android.widget.TextView[@text='"+text1+"']"));
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='"+text1+"']")).click();
+        androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Nhập nội dung']")).sendKeys(text2);
+        try {
+            if (androidDriver.isKeyboardShown()) {
+                androidDriver.hideKeyboard();
+            }
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Tiếp tục']")).click();
+        waitElement(By.xpath("//android.widget.TextView[@text='Xác nhận']"));
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Xác nhận']")).click();
+    }
+
+    @And("^I get amount total after booking a bouquet$")
+    public void iGetAmountTotalAfterBookingABouquet() {
+        {
+            List<AndroidElement> afterAmountList = (List<AndroidElement>) androidDriver.findElements(By.xpath("//android.widget.TextView[contains(@text,'VND')]"));
+            String afterAmount = afterAmountList.get(2).getText();
+            afterAmount = afterAmount.replace(" VND", "");
+            afterAmount = afterAmount.replace(",", "");
+            System.out.println("**************** After Amount   " + afterAmount);
+            d_afterAmount = Double.parseDouble(afterAmount);
+        }
+    }
+
+    @And("^I tap on (Đánh giá cá nhân|Đánh giá chung|Danh sách trái phiếu đã bán)$")
+    public void iTapOn(String type) throws Exception {
+        switch (type) {
+            case "Đánh giá cá nhân":
+                androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Đánh giá cá nhân']")).click();
+                break;
+            case "Đánh giá chung":
+                androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Đánh giá chung']")).click();
+                break;
+            case "Danh sách trái phiếu đã bán":
+                androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Danh sách trái phiếu đã bán']")).click();
+                break;
+        }
+    }
+
+
 }

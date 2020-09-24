@@ -213,4 +213,17 @@ public class TestBase {
         dragNDrop.perform();
     }
 
+    public void verticalScroll()
+    {
+        Dimension size = androidDriver.manage().window().getSize();
+        int y_start=(int)(size.height*0.6);
+        int y_end=(int)(size.height*0.4);
+        int x= size.width / 2;
+        TouchAction dragNDrop = new TouchAction(androidDriver)
+                .press(PointOption.point(x -100 , y_start)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(10000)))
+                .moveTo(PointOption.point(x -100, y_end))
+                .release();
+        dragNDrop.perform();
+    }
+
 }

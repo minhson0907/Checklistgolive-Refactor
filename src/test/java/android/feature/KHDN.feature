@@ -15,7 +15,7 @@ Feature: KHDN
     Given I open app
     Then As input user, I login with "autotestnhap" and "abc123"
     And As KHDN, I do transaction with type is "CK trong HD" in Home page 1
-    Then I transfer to "002704070011069" account, "1" amount and "AUTO DESCRIPTION" description with fee payer is "Người chuyển trả"
+    Then As KHDN, I transfer to "002704070011069" account, "1" amount and "AUTO DESCRIPTION" description with fee payer is "Người chuyển trả"
     Then I input soft HDBank with code is "112233"
     And I verify "GIAO DỊCH ĐÃ ĐƯỢC CHẤP NHẬN VÀ ĐANG CHỜ DUYỆT" is displayed after doing transaction successfully
 

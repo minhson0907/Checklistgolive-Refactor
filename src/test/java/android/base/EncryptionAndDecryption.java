@@ -6,7 +6,7 @@ public class EncryptionAndDecryption {
 
     public static void main(String[] args) {
 
-        String encrptData= "";
+        String encrptData= "điền pass thật của mình vào đây để mã hóa";
 
         byte[] encodedBytes = Base64.getEncoder().encode(encrptData.getBytes());
 
