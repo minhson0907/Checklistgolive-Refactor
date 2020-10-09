@@ -18,11 +18,12 @@ public class uiSteps extends TestBase {
     }
 
     @And("^I tap on (Tài khoản|Chuyển khoản) at position is \"([^\"]*)\" in left menu$")
-    public void iTapOnInLeftMenu(String type, String number) throws Exception {
+    public void iTapOnInLeftMenu(String type, int number) throws Exception {
+        int sNumber = number + 1;
         switch (type){
             default:
-                waitElement(By.xpath("//android.widget.LinearLayout[@index='"+number+"']"));
-                androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='"+number+"']")).click();
+                waitElement(By.xpath("//android.widget.LinearLayout[@index='"+ sNumber +"']"));
+                androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='"+ sNumber +"']")).click();
                 break;
         }
     }
@@ -48,12 +49,11 @@ public class uiSteps extends TestBase {
 
     @Then("^I tap on \"([^\"]*)\" button on popup$")
     public void iTapOnButtonOnPopup(String text) throws Exception {
-        try{
-            if (androidDriver.findElement(By.xpath("//android.widget.Button[@text='"+text+"']")).isDisplayed()) {
-                androidDriver.findElement(By.xpath("//android.widget.Button[@text='"+text+"']")).click();
+        try {
+            if (androidDriver.findElement(By.xpath("//android.widget.Button[@index='1']")).isDisplayed()) {
+                androidDriver.findElement(By.xpath("//android.widget.Button[@index='1']")).click();
             }
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.getMessage();
         }
     }

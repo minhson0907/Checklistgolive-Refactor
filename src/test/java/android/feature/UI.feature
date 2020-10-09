@@ -6,13 +6,16 @@ Feature: Verify UI
     Given I open app
     Then I login with "user_live" and "password"
     And I go to left menu
-    And I tap on "Đăng ký HDBank OTP"
-    Then I verify "Điều khoản & Điều kiện" is displayed
+    And I tap on "Tạo mã OTP"
+    Then I verify "Lấy mã OTP" is displayed
     And I back to left menu
-    And I tap on Tài khoản at position is "3" in left menu
+    Then I tap on "Đổi PIN HDBank OTP"
+    And I verify "Đổi PIN HDBank OTP" is displayed
+    And I back to left menu
+    And I tap on Tài khoản at position is "4" in left menu
     Then I verify "Tài khoản thanh toán" is displayed
     And I back to left menu
-    And I tap on Chuyển khoản at position is "4" in left menu
+    And I tap on Chuyển khoản at position is "5" in left menu
     Then I verify "Chuyển khoản trong HDBank" is displayed
     Then I verify "Chuyển khoản ngoài HDBank" is displayed
     Then I verify "Chuyển khoản qua số thẻ" is displayed
@@ -79,7 +82,7 @@ Feature: Verify UI
     And I back to left menu
     Then I tap on "Thông tin chứng khoán"
     And I verify "Thị trường" is displayed
-    And I back to left menu
+    And I back to left menu from stock market
     Then I tap on "Địa điểm Chi nhánh/ATM"
     And I verify "HDBank" is displayed
     And I back to left menu

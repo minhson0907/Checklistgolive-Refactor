@@ -386,6 +386,8 @@ public class mbkSteps extends TestBase {
         androidDriver.findElement(By.xpath("//android.support.v7.widget.RecyclerView[@index='0']/android.widget.LinearLayout[@index='0']")).click();
         waitElement(By.xpath("//android.widget.TextView[@text='Trả phòng: trước 12:00 - Nhận phòng: sau 14:00']"));
         scrollToUp();
+        Thread.sleep(2000);
+        scrollToUp();
         waitElement(By.xpath("//android.widget.TextView[@text='ĐẶT PHÒNG']"));
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='ĐẶT PHÒNG']")).click();
         androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Email']")).sendKeys(email);
