@@ -77,9 +77,9 @@ Feature: Verify UI
     Then I tap on "Thông tin lãi suất"
     And I verify "HDBank" is displayed
     And I back to left menu
-#    Then I tap on "Thông tin chứng khoán"
-#    And I verify "Thị trường" is displayed
-#    And I back to left menu
+    Then I tap on "Thông tin chứng khoán"
+    And I verify "Thị trường" is displayed
+    And I back to left menu
     Then I tap on "Địa điểm Chi nhánh/ATM"
     And I verify "HDBank" is displayed
     And I back to left menu

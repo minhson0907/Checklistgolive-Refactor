@@ -36,8 +36,8 @@ public class uiSteps extends TestBase {
 
     @And("^I back to left menu from stock market$")
     public void iBackToLeftMenuFromStockMarket() throws Exception {
-        waitElement(By.xpath("//android.widget.RelativeLayout[@index='0']/android.widget.ImageView[@index='0']"));
-        androidDriver.findElement(By.xpath("//android.widget.RelativeLayout[@index='0']/android.widget.ImageView[@index='0']")).click();
+        waitElement(By.xpath("//android.view.ViewGroup[@index='0']/android.widget.RelativeLayout[@index='0']/android.widget.ImageView[@index='0']"));
+        androidDriver.findElement(By.xpath("//android.view.ViewGroup[@index='0']/android.widget.RelativeLayout[@index='0']/android.widget.ImageView[@index='0']")).click();
     }
 
     @Then("^I back to left menu from booking$")

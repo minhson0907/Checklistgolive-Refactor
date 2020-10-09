@@ -1,4 +1,4 @@
-@golive @KHCN
+@golive @KHCN @1
 Feature: KHCN
 
 #  @KHCN-01 @Android
@@ -33,6 +33,7 @@ Feature: KHCN
     When I login with "user_live" and "password"
     And I do transaction from "002704070016025" account with type is "CK ngoài HD"
     And I get amount total before doing transaction
+    Then I add new account with "ACB" bank, "249515269" account number and "VO MINH SON" receiver
     And I update "249515269" account with type is Chuyển khoản tự động
     Then I transfer to "DONGA BANK" bank, "249515269" account, "VO MINH SON" receiver, "2" amount and "AUTO EXTERNAL TRANSFER 05" description with fee payer is "Người chuyển trả"
     Then I input soft HDBank with code is "112233"
@@ -136,7 +137,7 @@ Feature: KHCN
     Then I continue to book hotel
     Then I verify "Xác nhận" is displayed if bill is not paid or "Hóa đơn không còn nợ, vui lòng kiểm tra lại" is displayed if bill has been paid
 
-  @KHCN_09 @UninstallAndroid
+  @KHCN-09 @UninstallAndroid
   Scenario: Order a bouquet
     Given I open app
     When I login with "datathanhvan" and "abc123"
@@ -145,6 +146,7 @@ Feature: KHCN
     And I fill info as below
       | testauto@gmail.com | 174 Phan Dang Luu |
     And I give to "Bạn bè" with "Happy birthday" message
+    Then I verify "Email" "testauto@gmail.com" is displayed after doing transaction successfully
     And I scroll up page
     And I continue to book flower
     Then I verify "Xác nhận" is displayed if bill is not paid or "Hóa đơn không còn nợ, vui lòng kiểm tra lại" is displayed if bill has been paid
@@ -254,8 +256,8 @@ Feature: KHCN
     And I verify "Số điện thoại" is displayed
     And I verify "Lưu mã QR" is displayed
 
-  @KHCN_checklist-24 @UninstallAndroid
-  Scenario: Verify bonds is displayed in detail account
+  @KHCN-19 @UninstallAndroid
+  Scenario: Thông tin trái phiếu
     Given I open app
     When I login with "user_live" and "password"
     Then I do transaction with type is "Tài khoản" in Home page 1
