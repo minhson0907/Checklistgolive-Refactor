@@ -283,13 +283,13 @@ public class mbkSteps extends TestBase {
         } catch (Exception e) {
             e.getMessage();
         }
+        // scroll up
+        scrollToUp();
         waitElement(By.xpath("//android.widget.TextView[@text='Người chuyển trả']"));
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Người chuyển trả']")).click();
         waitElement(By.xpath("//android.widget.TextView[@text='" + feePayer + "']"));
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + feePayer + "']")).click();
         androidDriver.findElement(By.id("com.vnpay.hdbank:id/content")).sendKeys(description);
-        // scroll up
-        scrollToUp();
         androidDriver.findElement(By.xpath("//android.widget.Button[@text='Tiếp tục']")).click();
         try {
             if (androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Đồng ý']")).isDisplayed()) {
@@ -367,8 +367,8 @@ public class mbkSteps extends TestBase {
     @And("^I looking for the hotel in \"([^\"]*)\"$")
     public void iLookingForTheHotelAroundMe(String location) throws Exception {
         try {
-            if (androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='1']/android.widget.Button[@index='0']")).isDisplayed()) {
-                androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='1']/android.widget.Button[@index='0']")).click();
+            if (androidDriver.findElement(By.xpath("//android.widget.Button[@index='1']")).isDisplayed()) {
+                androidDriver.findElement(By.xpath("//android.widget.Button[@index='1']")).click();
             }
         } catch (Exception e) {
             e.getMessage();
@@ -406,8 +406,8 @@ public class mbkSteps extends TestBase {
     public void iTopup(String card, String phoneNumber) throws Exception {
         // Không bắt bằng text dc vì mỗi popup trên mỗi device text khác nhau
         try {
-            if (androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='1']/android.widget.Button[@index='0']")).isDisplayed()) {
-                androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='1']/android.widget.Button[@index='0']")).click();
+            if (androidDriver.findElement(By.xpath("//android.widget.Button[@index='1']")).isDisplayed()) {
+                androidDriver.findElement(By.xpath("//android.widget.Button[@index='1']")).click();
             }
         } catch (Exception e) {
             e.getMessage();
@@ -975,15 +975,15 @@ public class mbkSteps extends TestBase {
         }
         waitElement(By.xpath("//android.widget.Button[@text='Đồng ý']"));
         androidDriver.findElement(By.xpath("//android.widget.Button[@text='Đồng ý']")).click();
-        scrollToUp();
+        waitElement(By.xpath("//android.widget.Button[@text='Xác nhận']"));
         androidDriver.findElement(By.xpath("//android.widget.Button[@text='Xác nhận']")).click();
     }
 
     @And("^I buy a film ticket at \"([^\"]*)\" cinema$")
     public void iBuyAFilmTicket(String cinema) throws Exception {
         try {
-            if (androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='1']/android.widget.Button[@index='0']")).isDisplayed()) {
-                androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='1']/android.widget.Button[@index='0']")).click();
+            if (androidDriver.findElement(By.xpath("//android.widget.Button[@index='1']")).isDisplayed()) {
+                androidDriver.findElement(By.xpath("//android.widget.Button[@index='1']")).click();
             }
         } catch (Exception e) {
             e.getMessage();
@@ -1050,8 +1050,8 @@ public class mbkSteps extends TestBase {
         waitElement(By.xpath("//android.widget.TextView[@text='Tạo mã QR thông tin cá nhân']"));
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Tạo mã QR thông tin cá nhân']")).click();
         try {
-            if (androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='1']/android.widget.Button[@index='0']")).isDisplayed()) {
-                androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='1']/android.widget.Button[@index='0']")).click();
+            if (androidDriver.findElement(By.xpath("//android.widget.Button[@index='1']")).isDisplayed()) {
+                androidDriver.findElement(By.xpath("//android.widget.Button[@index='1']")).click();
             }
         } catch (Exception e) {
             e.getMessage();
@@ -1147,8 +1147,8 @@ public class mbkSteps extends TestBase {
     @Then("^I order a bouquet with name is \"([^\"]*)\"$")
     public void iOrderABouquetWithNameIs(String text) throws Exception {
         try {
-            if (androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='1']/android.widget.Button[@index='0']")).isDisplayed()) {
-                androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='1']/android.widget.Button[@index='0']")).click();
+            if (androidDriver.findElement(By.xpath("//android.widget.Button[@index='1']")).isDisplayed()) {
+                androidDriver.findElement(By.xpath("//android.widget.Button[@index='1']")).click();
             }
         } catch (Exception e) {
             e.getMessage();
