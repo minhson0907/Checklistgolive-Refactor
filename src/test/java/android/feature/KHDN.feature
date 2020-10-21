@@ -1,16 +1,7 @@
 @golive @KHDN @1
 Feature: KHDN
 
-#  @KHDN-01 @Android
-#  Scenario: Đăng ký soft token cho user duyệt - KHDN
-#    Given I open app
-#    When I login with "user_duyệt" and "abc123"
-#    And I input OTP code that is sent to your phone within "10" seconds
-#    Then I register HDBank OTP
-#    And I input "112233" PIN code
-#    Then I verify "Quý khách đã đăng ký thành công HDBank OTP" is displayed
-
-  @KHDN-02 @AndroidInput
+  @KHDN-01 @AndroidInput
     Scenario: Chuyển khoản trong with user nhập
     Given I open app
     Then As input user, I login with "autotestnhap" and "abc123"
@@ -19,7 +10,7 @@ Feature: KHDN
     Then I input soft HDBank with code is "112233"
     And I verify "GIAO DỊCH ĐÃ ĐƯỢC CHẤP NHẬN VÀ ĐANG CHỜ DUYỆT" is displayed after doing transaction successfully
 
-  @KHDN-02 @AndroidApproval
+  @KHDN-01 @AndroidApproval
   Scenario: Chuyển khoản trong with user duyệt
     Given I open app
     Then  As approval user, I login with "autotestduyet" and "abc123"
@@ -29,7 +20,7 @@ Feature: KHDN
     Then I approve the above transaction with code is "112233"
     And I verify "THÀNH CÔNG" is displayed
     
-  @KHDN-03 @AndroidInput
+  @KHDN-02 @AndroidInput
   Scenario: Chuyển khoản ngoài citad with user nhập
     Given I open app
     Then As input user, I login with "autotestnhap" and "abc123"
@@ -41,7 +32,7 @@ Feature: KHDN
     And I verify "Loại giao dịch" "Chuyển khoản thường tài khoản đến tài khoản" is displayed after doing transaction successfully
     And I verify "GIAO DỊCH ĐÃ ĐƯỢC CHẤP NHẬN VÀ ĐANG CHỜ DUYỆT" is displayed after doing transaction successfully
 
-  @KHDN-03 @AndroidApproval
+  @KHDN-02 @AndroidApproval
   Scenario: Chuyển khoản ngoài citad with user duyệt
     Given I open app
     When As approval user, I login with "autotestduyet" and "abc123"
@@ -51,7 +42,7 @@ Feature: KHDN
     Then I approve the above transaction with code is "112233"
     And I verify "THÀNH CÔNG" is displayed
 
-  @KHDN-04 @AndroidInput
+  @KHDN-03 @AndroidInput
   Scenario: Chuyển khoản ngoài napas with user nhập
     Given I open app
     Then As input user, I login with "autotestnhap" and "abc123"
@@ -63,7 +54,7 @@ Feature: KHDN
     And I verify "Loại giao dịch" "Chuyển khoản nhanh 24/7" is displayed after doing transaction successfully
     And I verify "GIAO DỊCH ĐÃ ĐƯỢC CHẤP NHẬN VÀ ĐANG CHỜ DUYỆT" is displayed after doing transaction successfully
 
-  @KHDN-04 @AndroidApproval
+  @KHDN-03 @AndroidApproval
   Scenario: Chuyển khoản ngoài napas with user duyệt
     Given I open app
     When As approval user, I login with "autotestduyet" and "abc123"
@@ -73,7 +64,7 @@ Feature: KHDN
     Then I approve the above transaction with code is "112233"
     And I verify "THÀNH CÔNG" is displayed
 
-  @KHDN-05 @AndroidInput
+  @KHDN-04 @AndroidInput
   Scenario: Chuyển khoản qua thẻ with user nhập
     Given I open app
     Then As input user, I login with "autotestnhap" and "abc123"
@@ -82,7 +73,7 @@ Feature: KHDN
     Then I input soft HDBank with code is "112233"
     And I verify "GIAO DỊCH ĐÃ ĐƯỢC CHẤP NHẬN VÀ ĐANG CHỜ DUYỆT" is displayed after doing transaction successfully
 
-  @KHDN-05 @AndroidApproval
+  @KHDN-04 @AndroidApproval
   Scenario: Chuyển khoản qua thẻ with user duyệt
     Given I open app
     When As approval user, I login with "autotestduyet" and "abc123"
@@ -92,7 +83,7 @@ Feature: KHDN
     Then I approve the above transaction with code is "112233"
     And I verify "THÀNH CÔNG" is displayed
 
-  @KHDN-06 @AndroidInput
+  @KHDN-05 @AndroidInput
   Scenario: Top up VietJetAir with user nhập
     Given I open app
     Then As input user, I login with "autotestnhap" and "abc123"
@@ -102,7 +93,7 @@ Feature: KHDN
     Then I input soft HDBank with code is "112233"
     And I verify "GIAO DỊCH ĐÃ ĐƯỢC CHẤP NHẬN VÀ ĐANG CHỜ DUYỆT" is displayed after doing transaction successfully
 
-  @KHDN-06 @AndroidApproval
+  @KHDN-05 @AndroidApproval
   Scenario: Top up VietJetAir with user duyệt
     Given I open app
     When As approval user, I login with "autotestduyet" and "abc123"
@@ -112,7 +103,7 @@ Feature: KHDN
     Then I approve the above transaction with code is "112233"
     And I verify "THÀNH CÔNG" is displayed
 
-  @KHDN-07 @AndroidInput
+  @KHDN-06 @AndroidInput
   Scenario: Tạo QR thông tin cá nhân
     Given I open app
     Then As input user, I login with "autotestnhap" and "abc123"

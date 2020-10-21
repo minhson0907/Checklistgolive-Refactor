@@ -1,16 +1,7 @@
 @golive @KHCN @1
 Feature: KHCN
 
-#  @KHCN-01 @Android
-#  Scenario: Đăng ký soft token cho user KHCN
-#    Given I open app
-#    When I login with "user_live" and "abc123"
-#    And I input OTP code that is sent to your phone within "10" seconds
-#    Then I register HDBank OTP
-#    And I input "112233" PIN code
-#    Then I verify "Quý khách đã đăng ký thành công HDBank OTP" is displayed
-
-  @KHCN-02 @UninstallAndroid
+  @KHCN-01 @UninstallAndroid
   Scenario: Chuyển khoản citad
     Given I open app
     When I login with "user_live" and "password"
@@ -27,7 +18,7 @@ Feature: KHCN
     Then I get amount total after doing transaction
     And I verify before total amount = after total amount + debit amount + fee
 
-  @KHCN-03 @UninstallAndroid
+  @KHCN-02 @UninstallAndroid
   Scenario: Chuyển khoản napas
     Given I open app
     When I login with "user_live" and "password"
@@ -44,7 +35,7 @@ Feature: KHCN
     Then I get amount total after doing transaction
     And I verify before total amount = after total amount + debit amount + fee
 
-  @KHCN-04 @UninstallAndroid
+  @KHCN-03 @UninstallAndroid
   Scenario: Chuyển khoản trong
     Given I open app
     When I login with "user_live" and "password"
@@ -68,7 +59,7 @@ Feature: KHCN
     Then I share the above transaction
     And I verify "Share" is displayed after sharing the above transaction
 
-  @KHCN-05 @UninstallAndroid
+  @KHCN-04 @UninstallAndroid
   Scenario: Chuyển khoản qua thẻ
     Given I open app
     When I login with "user_live" and "password"
@@ -82,7 +73,7 @@ Feature: KHCN
     Then I get amount total after doing transaction
     And I verify before total amount = after total amount + debit amount + fee
 
-  @KHCN-06 @UninstallAndroid
+  @KHCN-05 @UninstallAndroid
   Scenario: Test các chức năng thanh toán: điện, nước, internet, truyền hình cáp, Di động trả sau, Điện thoại cố định, Nạp tiền điện thoại, Topup VJ
     Given I open app
     When I login with "user_live" and "password"
@@ -129,7 +120,7 @@ Feature: KHCN
     Then I get amount total after doing transaction for topup VietJetAir
     And I verify before total amount = after total amount + debit amount
 
-  @KHCN-07 @UninstallAndroid
+  @KHCN-06 @UninstallAndroid
     Scenario: Thanh toán vé máy bay
     Given I open app
     When I login with "user_live" and "password"
@@ -145,7 +136,7 @@ Feature: KHCN
     And I do paying bill from "002704070016025" account to Thanh toán vé đặt qua VNPAY provider with the above reservation code
     Then I verify "Xác nhận" is displayed if bill is not paid or "Hóa đơn không còn nợ, vui lòng kiểm tra lại" is displayed if bill has been paid
 
-  @KHCN-08 @UninstallAndroid
+  @KHCN-07 @UninstallAndroid
     Scenario: Đặt phòng Khách sạn
     Given I open app
     When I login with "user_live" and "password"
@@ -155,7 +146,7 @@ Feature: KHCN
     Then I continue to book hotel
     Then I verify "Xác nhận" is displayed if bill is not paid or "Hóa đơn không còn nợ, vui lòng kiểm tra lại" is displayed if bill has been paid
 
-  @KHCN-09 @UninstallAndroid
+  @KHCN-08 @UninstallAndroid
   Scenario: Order a bouquet
     Given I open app
     When I login with "datathanhvan" and "abc123"
@@ -169,7 +160,7 @@ Feature: KHCN
     And I continue to book flower
     Then I verify "Xác nhận" is displayed if bill is not paid or "Hóa đơn không còn nợ, vui lòng kiểm tra lại" is displayed if bill has been paid
 
-  @KHCN-10 @UninstallAndroid
+  @KHCN-09 @UninstallAndroid
     Scenario: Đặt vé tàu
     Given I open app
     When I login with "user_live" and "password"
@@ -187,7 +178,7 @@ Feature: KHCN
     Then I continue to book the train
     Then I verify "Xác nhận" is displayed if bill is not paid or "Hóa đơn không còn nợ, vui lòng kiểm tra lại" is displayed if bill has been paid
 
-  @KHCN-11 @UninstallAndroid
+  @KHCN-10 @UninstallAndroid
     Scenario: Đặt vé máy bay
     Given I open app
     When I login with "user_live" and "password"
@@ -200,7 +191,7 @@ Feature: KHCN
     And I continue to book the above flight
     Then I verify "Xác nhận" is displayed if bill is not paid or "Hóa đơn không còn nợ, vui lòng kiểm tra lại" is displayed if bill has been paid
 
-  @KHCN-12 @UninstallAndroid
+  @KHCN-11 @UninstallAndroid
     Scenario: Đặt vé xem phim
     Given I open app
     When I login with "user_live" and "password"
@@ -208,7 +199,7 @@ Feature: KHCN
     And I buy a film ticket at "BHD Star Cineplex" cinema
     Then I verify "Xác nhận" is displayed if bill is not paid or "Hóa đơn không còn nợ, vui lòng kiểm tra lại" is displayed if bill has been paid
 
-  @KHCN-13 @UninstallAndroid
+  @KHCN-12 @UninstallAndroid
   Scenario: Mở sổ tiết kiệm
     Given I open app
     When I login with "user_live" and "password"
@@ -219,7 +210,7 @@ Feature: KHCN
     Then I input soft HDBank with code is "112233"
     And I verify "GIAO DỊCH THÀNH CÔNG" is displayed
 
-  @KHCN-14 @UninstallAndroid
+  @KHCN-13 @UninstallAndroid
   Scenario: Tất toán sổ tiết kiệm
     Given I open app
     When I login with "user_live" and "password"
@@ -228,7 +219,7 @@ Feature: KHCN
     Then I input soft HDBank with code is "112233"
     And I verify "GIAO DỊCH THÀNH CÔNG" is displayed
 
-  @KHCN-15 @UninstallAndroid
+  @KHCN-14 @UninstallAndroid
   Scenario: Thanh toán thẻ tín dụng
     Given I open app
     When I login with "user_live" and "password"
@@ -237,7 +228,7 @@ Feature: KHCN
     Then I input soft HDBank with code is "112233"
     And I verify "GIAO DỊCH THÀNH CÔNG" is displayed
 
-  @KHCN-16 @UninstallAndroid
+  @KHCN-15 @UninstallAndroid
   Scenario: Đóng Thanh toán online
     Given I open app
     When I login with "user_live" and "password"
@@ -246,7 +237,7 @@ Feature: KHCN
     Then I input soft HDBank with code is "112233"
     And I verify "GIAO DỊCH THÀNH CÔNG" is displayed
 
-  @KHCN-17 @UninstallAndroid
+  @KHCN-16 @UninstallAndroid
   Scenario: Mở Thanh toán online
     Given I open app
     When I login with "user_live" and "password"
@@ -255,7 +246,7 @@ Feature: KHCN
     Then I input soft HDBank with code is "112233"
     And I verify "GIAO DỊCH THÀNH CÔNG" is displayed
 
-  @KHCN-18 @UninstallAndroid
+  @KHCN-17 @UninstallAndroid
   Scenario: Tạo QR thông tin cá nhân, Chuyển khoản QR, Thanh toán QR
     Given I open app
     When I login with "user_live" and "password"
@@ -274,7 +265,7 @@ Feature: KHCN
     And I verify "Số điện thoại" is displayed
     And I verify "Lưu mã QR" is displayed
 
-  @KHCN-19 @UninstallAndroid
+  @KHCN-18 @UninstallAndroid
   Scenario: Thông tin trái phiếu
     Given I open app
     When I login with "user_live" and "password"
@@ -284,7 +275,7 @@ Feature: KHCN
     Then I tap on Danh sách trái phiếu đã bán
     And I verify "Quý khách không có trái phiếu đã bán." is displayed
 
-#  @KHCN-18 @UninstallAndroid
+#  @KHCN-19 @UninstallAndroid
 #  Scenario: Khóa Thẻ
 #    Given I open app
 #    Then I login with "user_live" and "password"
