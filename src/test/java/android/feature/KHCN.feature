@@ -60,8 +60,8 @@ Feature: KHCN
     Then I verify "Quý khách đã thực hiện giao dịch Chuyển khoản trong HDBank. Quý khách đánh giá giao dịch này thế nào?" is displayed after doing transaction successfully
     And I tap on rating section
     Then I verify "Chúng tôi luôn mong muốn nhận được phản hồi của Quý khách để nâng cao chất lượng dịch vụ." is displayed after doing transaction successfully
-    And I tap on icon star with level is "2"
-    Then I verify "Chưa tốt" is displayed after doing transaction successfully
+    And I tap on icon star with level is "5"
+    Then I verify "Rất tốt" is displayed after doing transaction successfully
     And I do rating with "AUTO COMMENT" comment
     Then I verify "Thông báo" "Cảm ơn Quý khách đã gửi đánh giá." is displayed after doing transaction successfully
     And I close notice popup
@@ -113,13 +113,21 @@ Feature: KHCN
     Then I go to Home
     And I do transaction with type is "Thanh toán" in Home page 1
     Then I pay "Nạp tiền điện thoại" bill in "Nạp tiền" service
+    And I get amount total before doing transaction in topup mobile
     And I topup "10,000 VND" into "0983234167" phone number
-    Then I verify "Xác nhận" is displayed if bill is not paid or "Hóa đơn không còn nợ, vui lòng kiểm tra lại" is displayed if bill has been paid
+    Then I input soft HDBank with code is "112233"
+    And I get transferred amount in payment service
+    And I get amount total after doing transaction for topup mobile
+    Then I verify before total amount = after total amount + debit amount
     Then I go to Home
     And I do transaction with type is "Thanh toán" in Home page 1
     Then I pay "" bill in "Topup cho đại lý VietjetAir" service
-    And I verify "Topup đại lý VietjetAir" is displayed
-    And I verify "Thông tin thanh toán" is displayed
+    And I get amount total before doing transaction
+    And I do paying bill from "002704070016025" account for "33000085" agent code with amount is "1"
+    Then I input soft HDBank with code is "112233"
+    And I get transferred amount in payment service
+    Then I get amount total after doing transaction for topup VietJetAir
+    And I verify before total amount = after total amount + debit amount
 
   @KHCN-07 @UninstallAndroid
     Scenario: Thanh toán vé máy bay
