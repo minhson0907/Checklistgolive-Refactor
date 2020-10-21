@@ -204,6 +204,7 @@ public class mbkSteps extends TestBase {
     }
 
     private double getFee() throws Exception {
+        waitElement(By.xpath("//android.widget.TextView[@text='Chia sẻ']"));
         List<AndroidElement> feeList = (List<AndroidElement>) androidDriver.findElements(By.xpath("//android.widget.TextView[contains(@text,'VND')]"));
         String fee = feeList.get(1).getText();
         fee = fee.replace(" VND", "");
@@ -1066,6 +1067,7 @@ public class mbkSteps extends TestBase {
         androidDriver.findElement(By.xpath("//android.widget.ImageView[@index='2']")).click();
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Thư viện ảnh']")).click();
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Photos']")).click();
+        Thread.sleep(1000);
         scrollToUp();
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Skype']")).click();
         androidDriver.findElement(By.xpath("//android.view.ViewGroup[@index='1']")).click();
@@ -1115,11 +1117,14 @@ public class mbkSteps extends TestBase {
         }
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Thư viện ảnh']")).click();
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Photos']")).click();
-        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='QRPay']")).click();
+        Thread.sleep(1000);
+        scrollToUp();
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='QRLive']")).click();
         androidDriver.findElement(By.xpath("//android.view.ViewGroup[@index='1']")).click();
         waitElement(By.xpath("//android.widget.EditText[@text='Số tiền *']"));
         androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Số tiền *']")).sendKeys(amount);
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Người chuyển trả']")).click();
+        waitElement(By.xpath("//android.widget.TextView[@text='" + feePayer + "']"));
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + feePayer + "']")).click();
         androidDriver.findElement(By.id("com.vnpay.hdbank:id/content")).sendKeys(description);
         androidDriver.findElement(By.xpath("//android.widget.Button[@text='Tiếp tục']")).click();
@@ -1246,5 +1251,34 @@ public class mbkSteps extends TestBase {
         }
     }
 
+    @And("^I tap on rating section$")
+    public void iTapOnRating() throws Exception {
+        List<WebElement> starList = (List<WebElement>) androidDriver.findElements(By.xpath("//android.widget.RelativeLayout[@index='1']/android.widget.ImageView"));
+        System.out.println("************************* " + starList.size());
+        starList.get(2).click();
+        Thread.sleep(1000);
+    }
+
+    @And("^I do rating with \"([^\"]*)\" comment$")
+    public void iDoRatingWithComment(String comment) throws Exception {
+        androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Vui lòng nhập ý kiến của Quý khách']")).sendKeys(comment);
+        androidDriver.findElement(By.xpath("//android.widget.Button[@text='Gửi đánh giá']")).click();
+        Thread.sleep(1000);
+    }
+
+    @Then("^I share the above transaction$")
+    public void iShareTheAboveTransaction() {
+        scrollToDown();
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Chia sẻ']")).click();
+    }
+
+    @And("^I verify \"([^\"]*)\" is displayed after sharing the above transaction$")
+    public void iVerifyIsDisplayedAfterSharingTheAboveTransaction(String text) throws Exception {
+        waitElement(By.xpath("//android.widget.TextView[@text='" + text + "']"));
+        String actualString1 = androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + text + "']")).getText();
+        System.out.println("**************** Data table " + actualString1);
+        assertTrue(actualString1.contains(text));
+        scrollToDown();
+    }
 
 }

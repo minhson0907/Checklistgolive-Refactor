@@ -57,6 +57,16 @@ Feature: KHCN
     And I scroll up page
     Then I get amount total after doing transaction
     And I verify before total amount = after total amount + debit amount + fee
+    Then I verify "Quý khách đã thực hiện giao dịch Chuyển khoản trong HDBank. Quý khách đánh giá giao dịch này thế nào?" is displayed after doing transaction successfully
+    And I tap on rating section
+    Then I verify "Chúng tôi luôn mong muốn nhận được phản hồi của Quý khách để nâng cao chất lượng dịch vụ." is displayed after doing transaction successfully
+    And I tap on icon star with level is "2"
+    Then I verify "Chưa tốt" is displayed after doing transaction successfully
+    And I do rating with "AUTO COMMENT" comment
+    Then I verify "Thông báo" "Cảm ơn Quý khách đã gửi đánh giá." is displayed after doing transaction successfully
+    And I close notice popup
+    Then I share the above transaction
+    And I verify "Share" is displayed after sharing the above transaction
 
   @KHCN-05 @UninstallAndroid
   Scenario: Chuyển khoản qua thẻ
