@@ -111,3 +111,13 @@ Feature: KHDN
     And I search the above transaction
     Then I approve the above transaction with code is "112233"
     And I verify "THÀNH CÔNG" is displayed
+
+  @KHDN-07 @AndroidInput
+  Scenario: Tạo QR thông tin cá nhân
+    Given I open app
+    Then As input user, I login with "autotestnhap" and "abc123"
+    And I access in left menu
+    And I create QR personal information
+    Then I verify "Họ tên" is displayed
+    And I verify "Số điện thoại" is displayed
+    And I verify "Lưu mã QR" is displayed
