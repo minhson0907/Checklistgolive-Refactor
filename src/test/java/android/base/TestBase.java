@@ -161,7 +161,7 @@ public class TestBase {
         int end_y = (int) (androidDriver.manage().window().getSize().height * 0.2);
         TouchAction dragNDrop = new TouchAction(androidDriver)
                 .press(PointOption.point(x, start_y)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(500)))
-                .moveTo(PointOption.point(x, end_y))
+                .moveTo(PointOption.point(x, 0))
                 .release();
         dragNDrop.perform();
     }

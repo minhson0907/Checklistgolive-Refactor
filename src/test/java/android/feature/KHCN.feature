@@ -2,40 +2,6 @@
 Feature: KHCN
 
   @KHCN-01 @UninstallAndroid
-  Scenario: Chuyển khoản citad
-    Given I open app
-    When I login with "user_live" and "password"
-    And I do transaction from "002704070016025" account with type is "CK ngoài HD"
-    And I get amount total before doing transaction
-    Then I add new account with "ACB" bank, "249515269" account number and "VO MINH SON" receiver
-    And I update "249515269" account with type is Chuyển khoản thông thường
-    Then I transfer to "ACB" bank, "249515269" account, "VO MINH SON" receiver, "1" amount and "AUTO EXTERNAL TRANSFER 04" description with fee payer is "Người chuyển trả"
-    Then I input soft HDBank with code is "112233"
-    And I verify "Loại giao dịch" "Chuyển khoản thường tài khoản đến tài khoản" is displayed after doing transaction successfully
-    Then I get fee
-    And I get transferred amount
-    And I scroll up page
-    Then I get amount total after doing transaction
-    And I verify before total amount = after total amount + debit amount + fee
-
-  @KHCN-02 @UninstallAndroid
-  Scenario: Chuyển khoản napas
-    Given I open app
-    When I login with "user_live" and "password"
-    And I do transaction from "002704070016025" account with type is "CK ngoài HD"
-    And I get amount total before doing transaction
-    Then I add new account with "ACB" bank, "249515269" account number and "VO MINH SON" receiver
-    And I update "249515269" account with type is Chuyển khoản tự động
-    Then I transfer to "DONGA BANK" bank, "249515269" account, "VO MINH SON" receiver, "2" amount and "AUTO EXTERNAL TRANSFER 05" description with fee payer is "Người chuyển trả"
-    Then I input soft HDBank with code is "112233"
-    And I verify "Loại giao dịch" "Chuyển khoản nhanh 24/7" is displayed after doing transaction successfully
-    Then I get fee
-    And I get transferred amount
-    And I scroll up page
-    Then I get amount total after doing transaction
-    And I verify before total amount = after total amount + debit amount + fee
-
-  @KHCN-03 @UninstallAndroid
   Scenario: Chuyển khoản trong
     Given I open app
     When I login with "user_live" and "password"
@@ -55,9 +21,40 @@ Feature: KHCN
     Then I verify "Rất tốt" is displayed after doing transaction successfully
     And I do rating with "AUTO COMMENT" comment
     Then I verify "Thông báo" "Cảm ơn Quý khách đã gửi đánh giá." is displayed after doing transaction successfully
-    And I close notice popup
-    Then I share the above transaction
-    And I verify "Share" is displayed after sharing the above transaction
+
+  @KHCN-02 @UninstallAndroid
+  Scenario: Chuyển khoản citad
+    Given I open app
+    When I login with "user_live" and "password"
+    And I do transaction from "002704070016025" account with type is "CK ngoài HD"
+    And I get amount total before doing transaction
+    Then I add new account with "ACB" bank, "249515269" account number and "VO MINH SON" receiver
+    And I update "249515269" account with type is Chuyển khoản thông thường
+    Then I transfer to "ACB" bank, "249515269" account, "VO MINH SON" receiver, "1" amount and "AUTO EXTERNAL TRANSFER 04" description with fee payer is "Người chuyển trả"
+    Then I input soft HDBank with code is "112233"
+    And I verify "Loại giao dịch" "Chuyển khoản thường tài khoản đến tài khoản" is displayed after doing transaction successfully
+    Then I get fee
+    And I get transferred amount
+    And I scroll up page
+    Then I get amount total after doing transaction
+    And I verify before total amount = after total amount + debit amount + fee
+
+  @KHCN-03 @UninstallAndroid
+  Scenario: Chuyển khoản napas
+    Given I open app
+    When I login with "user_live" and "password"
+    And I do transaction from "002704070016025" account with type is "CK ngoài HD"
+    And I get amount total before doing transaction
+    Then I add new account with "ACB" bank, "249515269" account number and "VO MINH SON" receiver
+    And I update "249515269" account with type is Chuyển khoản tự động
+    Then I transfer to "DONGA BANK" bank, "249515269" account, "VO MINH SON" receiver, "2" amount and "AUTO EXTERNAL TRANSFER 05" description with fee payer is "Người chuyển trả"
+    Then I input soft HDBank with code is "112233"
+    And I verify "Loại giao dịch" "Chuyển khoản nhanh 24/7" is displayed after doing transaction successfully
+    Then I get fee
+    And I get transferred amount
+    And I scroll up page
+    Then I get amount total after doing transaction
+    And I verify before total amount = after total amount + debit amount + fee
 
   @KHCN-04 @UninstallAndroid
   Scenario: Chuyển khoản qua thẻ

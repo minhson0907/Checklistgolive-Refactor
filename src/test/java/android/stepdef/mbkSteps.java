@@ -351,6 +351,14 @@ public class mbkSteps extends TestBase {
             androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + type2 + "']")).click();
             waitElement(By.xpath("//android.widget.TextView[@text='" + type1 + "']"));
             androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + type1 + "']")).click();
+            // Không bắt bằng text dc vì mỗi popup trên mỗi device text khác nhau
+            try {
+                if (androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='1']/android.widget.Button[@index='0']")).isDisplayed()) {
+                    androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='1']/android.widget.Button[@index='0']")).click();
+                }
+            } catch (Exception e) {
+                e.getMessage();
+            }
         }
     }
 
@@ -388,8 +396,6 @@ public class mbkSteps extends TestBase {
         androidDriver.findElement(By.xpath("//android.support.v7.widget.RecyclerView[@index='0']/android.widget.LinearLayout[@index='0']")).click();
         waitElement(By.xpath("//android.widget.TextView[@text='Trả phòng: trước 12:00 - Nhận phòng: sau 14:00']"));
         scrollToUp();
-        Thread.sleep(2000);
-        scrollToUp();
         waitElement(By.xpath("//android.widget.TextView[@text='ĐẶT PHÒNG']"));
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='ĐẶT PHÒNG']")).click();
         androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Email']")).sendKeys(email);
@@ -406,14 +412,6 @@ public class mbkSteps extends TestBase {
 
     @And("^I topup \"([^\"]*)\" into \"([^\"]*)\" phone number$")
     public void iTopup(String card, String phoneNumber) throws Exception {
-        // Không bắt bằng text dc vì mỗi popup trên mỗi device text khác nhau
-        try {
-            if (androidDriver.findElement(By.xpath("//android.widget.Button[@index='1']")).isDisplayed()) {
-                androidDriver.findElement(By.xpath("//android.widget.Button[@index='1']")).click();
-            }
-        } catch (Exception e) {
-            e.getMessage();
-        }
         androidDriver.findElement(By.xpath("//android.widget.FrameLayout[@index='1']/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.EditText")).clear();
         androidDriver.findElement(By.xpath("//android.widget.FrameLayout[@index='1']/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.EditText")).sendKeys(phoneNumber);
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + card + "']")).click();
@@ -520,11 +518,6 @@ public class mbkSteps extends TestBase {
         Thread.sleep(1000);
         androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.LinearLayout[@index='1']/android.widget.TextView[@index='1']")).click();
         waitElement(By.xpath("//android.widget.TextView[@text='Chọn nhà cung cấp']"));
-        scrollToUp();
-        Thread.sleep(2000);
-        scrollToUp();
-        // dành cho máy của Hoa
-        Thread.sleep(2000);
         scrollToUp();
         waitElement(By.xpath("//android.widget.TextView[@text='" + provider + "']"));
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + provider + "']")).click();
