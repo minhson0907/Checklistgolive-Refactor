@@ -74,9 +74,9 @@ public class uiSteps extends TestBase {
         Thread.sleep(1000);
     }
 
-    @And("^I close notice popup$")
-    public void iCloseNoticePopup() {
-        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='ĐÓNG']")).click();
+    @And("^I close notice popup by \"([^\"]*)\" button$")
+    public void iCloseNoticePopup(String text) {
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='"+text+"']")).click();
     }
 
     @Then("^I logout app from left menu$")

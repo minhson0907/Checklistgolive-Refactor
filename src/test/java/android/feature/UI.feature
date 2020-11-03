@@ -65,7 +65,7 @@ Feature: Verify UI
     And I verify "Đánh giá ứng dụng" is displayed
     And I tap on icon star with level is "4"
     Then I send a rating request to HDBank
-    And I close notice popup
+    And I close notice popup by "ĐÓNG" button
     Then I tap on "Lịch sử đánh giá"
     And I verify "Đánh giá cá nhân" is displayed
     And I back to left menu

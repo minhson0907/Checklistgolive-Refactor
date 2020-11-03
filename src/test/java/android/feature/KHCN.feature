@@ -1,5 +1,5 @@
-@golive @KHCN @1
-Feature: KHCN
+@golive @KHCN
+Feature: KHCN for soft otp
 
   @KHCN-01 @UninstallAndroid
   Scenario: Chuyển khoản trong

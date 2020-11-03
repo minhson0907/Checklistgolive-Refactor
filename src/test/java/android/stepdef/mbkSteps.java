@@ -29,12 +29,6 @@ public class mbkSteps extends TestBase {
     String accountNumber;
     String reservationCode;
 
-//    public List<HashMap<String,String>> datamap;
-//    public mbkSteps()
-//    {
-//        datamap = DataHelper.data(System.getProperty("user.dir")+"//data//userdata.xlsx","Sheet1");
-//    }
-
     @Given("^I open app$")
     public void iOpenApp() throws Exception {
     }
@@ -76,7 +70,7 @@ public class mbkSteps extends TestBase {
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Đăng nhập']")).click();
     }
 
-    @When("^As (input|approval) user, I login with \"([^\"]*)\" and \"([^\"]*)\"$")
+    @When("^As (input|approval|sms) user, I login with \"([^\"]*)\" and \"([^\"]*)\"$")
     public void asKHDNILoginWithAnd(String type, String user, String pass) throws Exception {
         try {
             if (androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='8']/android.widget.RelativeLayout[@index='0']/android.widget.ImageView[@index='2']")).isDisplayed()) {
@@ -86,21 +80,29 @@ public class mbkSteps extends TestBase {
         } catch (Exception e) {
             e.getMessage();
         }
-        switch (type){
-            case"input":
+        switch (type) {
+            case "input":
                 androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Tài khoản']")).clear();
                 androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Tài khoản']")).sendKeys(DataHelper.getCellData(1, 2, "userdata"));
                 androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Mật khẩu']")).clear();
                 byte[] decodeBytes1 = Base64.getDecoder().decode(DataHelper.getCellData(1, 6, "userdata").getBytes());
                 androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Mật khẩu']")).sendKeys(new String(decodeBytes1));
                 break;
-            case"approval":
+            case "approval":
                 androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Tài khoản']")).clear();
                 androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Tài khoản']")).sendKeys(DataHelper.getCellData(1, 3, "userdata"));
                 androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Mật khẩu']")).clear();
                 byte[] decodeBytes2 = Base64.getDecoder().decode(DataHelper.getCellData(1, 7, "userdata").getBytes());
                 androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Mật khẩu']")).sendKeys(new String(decodeBytes2));
                 break;
+            default:
+                androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Tài khoản']")).clear();
+                androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Tài khoản']")).sendKeys(DataHelper.getCellData(2, 0, "userdata"));
+                androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Mật khẩu']")).clear();
+                byte[] decodeBytes3 = Base64.getDecoder().decode(DataHelper.getCellData(2, 5, "userdata").getBytes());
+                androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Mật khẩu']")).sendKeys(new String(decodeBytes3));
+                break;
+
         }
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Đăng nhập']")).click();
     }
@@ -126,6 +128,17 @@ public class mbkSteps extends TestBase {
         Thread.sleep(1000);
 //        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + accountNumber + "']")).click();
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + DataHelper.getCellData(1, 1, "userdata") + "']")).click();
+    }
+
+    @And("^As sms user, I do transaction from \"([^\"]*)\" account with type is \"([^\"]*)\"$")
+    public void asSmsUserIDoTransactionWithTypeIs(String accountNumber, String type) throws Exception {
+        waitElement(By.xpath("//android.widget.TextView[@text='" + type + "']"));
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + type + "']")).click();
+        Thread.sleep(1000);
+        androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.LinearLayout[@index='1']/android.widget.TextView")).click();
+        Thread.sleep(1000);
+//        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + accountNumber + "']")).click();
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + DataHelper.getCellData(2, 1, "userdata") + "']")).click();
     }
 
     @And("^As KHDN, I do transaction from \"([^\"]*)\" account with type is \"([^\"]*)\"$")
@@ -157,11 +170,12 @@ public class mbkSteps extends TestBase {
 
     @Then("^I transfer to \"([^\"]*)\" account, \"([^\"]*)\" amount and \"([^\"]*)\" description with fee payer is \"([^\"]*)\"$")
     public void iTransferFromToAccountAmountAndDescriptionWithFeePayerIs(String toAccount, String amount, String description, String feePayer) throws Exception {
-        waitElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.LinearLayout[@index='1']/android.widget.TextView"));
-        androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.LinearLayout[@index='1']/android.widget.TextView")).click();
-        Thread.sleep(1000);
+//        waitElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.LinearLayout[@index='1']/android.widget.TextView"));
+//        androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.LinearLayout[@index='1']/android.widget.TextView")).click();
+//        Thread.sleep(1000);
 //        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + accountNumber + "']")).click();
-        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + DataHelper.getCellData(1, 1, "userdata") + "']")).click();
+//        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + DataHelper.getCellData(1, 1, "userdata") + "']")).click();
+        waitElement(By.xpath("//android.widget.EditText[@text='Số tài khoản *']"));
         androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Số tài khoản *']")).sendKeys(toAccount);
         androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Số tiền *']")).sendKeys(amount);
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Người chuyển trả']")).click();
@@ -489,8 +503,8 @@ public class mbkSteps extends TestBase {
         waitElement(By.xpath("//android.widget.FrameLayout[@index='1']/android.widget.EditText"));
         androidDriver.findElement(By.xpath("//android.widget.FrameLayout[@index='1']/android.widget.EditText")).clear();
         androidDriver.findElement(By.xpath("//android.widget.FrameLayout[@index='1']/android.widget.EditText")).sendKeys(accountNumber);
-        waitElement(By.xpath("//android.widget.TextView[@text='"+accountNumber+"']"));
-        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='"+accountNumber+"']")).click();
+        waitElement(By.xpath("//android.widget.TextView[@text='" + accountNumber + "']"));
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + accountNumber + "']")).click();
     }
 
     @And("^I do paying bill from \"([^\"]*)\" account to \"([^\"]*)\" provider with customer ID is \"([^\"]*)\"$")
@@ -549,7 +563,7 @@ public class mbkSteps extends TestBase {
 
     @And("^I do paying bill from \"([^\"]*)\" account to (FECredit|HD SAIGON|HomeCredit) provider, \"([^\"]*)\" contract number and \"([^\"]*)\" amount with description is \"([^\"]*)\"$")
     public void iDoPayingBillFromAccountToFECreditProviderContractNumberAndAmountWithDescriptionIs(String fromAccount, String type, String contractNumber, String amount, String description) throws Exception {
-       waitElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.LinearLayout[@index='1']/android.widget.TextView"));
+        waitElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.LinearLayout[@index='1']/android.widget.TextView"));
         androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.LinearLayout[@index='1']/android.widget.TextView")).click();
         Thread.sleep(1000);
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + fromAccount + "']")).click();
@@ -1160,8 +1174,8 @@ public class mbkSteps extends TestBase {
         }
         waitElement(By.xpath("//android.widget.TextView[@text='Đặt mua hoa']"));
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Đặt mua hoa']")).click();
-        waitElement(By.xpath("//android.widget.TextView[@text='"+text+"']"));
-        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='"+text+"']")).click();
+        waitElement(By.xpath("//android.widget.TextView[@text='" + text + "']"));
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + text + "']")).click();
         waitElement(By.xpath("//android.widget.TextView[@text='Đặt mua hoa']"));
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Đặt mua hoa']")).click();
         waitElement(By.xpath("//android.widget.TextView[@text='Tiếp tục']"));
@@ -1169,7 +1183,7 @@ public class mbkSteps extends TestBase {
     }
 
     @And("^I fill info as below$")
-    public void iFillInfoAsBelow(DataTable contactInfo) throws  Exception{
+    public void iFillInfoAsBelow(DataTable contactInfo) throws Exception {
         List<List<String>> data = contactInfo.raw();
         waitElement(By.xpath("//android.widget.TextView[@text='Thông tin người mua']"));
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Email']")).click();
@@ -1209,8 +1223,8 @@ public class mbkSteps extends TestBase {
         verticalScroll();
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Chọn']")).click();
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Thiệp gửi tặng cho']")).click();
-        waitElement(By.xpath("//android.widget.TextView[@text='"+text1+"']"));
-        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='"+text1+"']")).click();
+        waitElement(By.xpath("//android.widget.TextView[@text='" + text1 + "']"));
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + text1 + "']")).click();
         androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Nhập nội dung']")).sendKeys(text2);
         try {
             if (androidDriver.isKeyboardShown()) {
@@ -1317,5 +1331,23 @@ public class mbkSteps extends TestBase {
         transferredAmount = transferredAmount.replace(",", "");
         System.out.println("**************** Before Amount   " + transferredAmount);
         d_beforeAmount = Double.parseDouble(transferredAmount);
+    }
+
+    @And("^I input \"([^\"]*)\" OTP code$")
+    public void iInputOTPCode(String code) throws Exception {
+        waitElement(By.xpath("//android.widget.LinearLayout[@index='1']/android.widget.TextView[@index='2']"));
+        androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='1']/android.widget.TextView[@index='2']")).sendKeys(code);
+    }
+
+    @And("^I confirm the above transaction$")
+    public void iConfirmTheAboveTransaction() throws Exception {
+        try {
+            if (androidDriver.isKeyboardShown()) {
+                androidDriver.hideKeyboard();
+            }
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        androidDriver.findElement(By.xpath("//android.widget.Button[@text='Xác nhận']")).click();
     }
 }

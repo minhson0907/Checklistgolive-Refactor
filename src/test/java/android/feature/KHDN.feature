@@ -1,4 +1,4 @@
-@golive @KHDN @1
+@golive @KHDN
 Feature: KHDN
 
   @KHDN-01 @AndroidInput
