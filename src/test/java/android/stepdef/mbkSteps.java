@@ -367,8 +367,8 @@ public class mbkSteps extends TestBase {
             androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + type1 + "']")).click();
             // Không bắt bằng text dc vì mỗi popup trên mỗi device text khác nhau
             try {
-                if (androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='1']/android.widget.Button[@index='0']")).isDisplayed()) {
-                    androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='1']/android.widget.Button[@index='0']")).click();
+                if (androidDriver.findElement(By.id("com.android.packageinstaller:id/permission_allow_button")).isDisplayed()) {
+                    androidDriver.findElement(By.id("com.android.packageinstaller:id/permission_allow_button")).click();
                 }
             } catch (Exception e) {
                 e.getMessage();
