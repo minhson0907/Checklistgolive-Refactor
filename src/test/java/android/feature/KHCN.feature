@@ -62,7 +62,7 @@ Feature: KHCN for soft otp
     When I login with "user_live" and "password"
     And I do transaction from "002704070016025" account with type is "CK qua thẻ"
     And I get amount total before doing transaction
-    Then I transfer to "4987666802993375" card number, "2" amount and "AUTO DESCRIPTION" description
+    Then I transfer to "9704366814567141015" card number, "2" amount and "AUTO DESCRIPTION" description
     Then I input soft HDBank with code is "112233"
     Then I get fee
     And I get transferred amount
