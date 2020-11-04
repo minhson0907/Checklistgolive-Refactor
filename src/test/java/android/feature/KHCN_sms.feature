@@ -1,4 +1,4 @@
-@golive @KHCN_sms @KHCN
+@golive @KHCN_sms
 Feature: KHCN for sms otp
 
   @KHCN_sms @UninstallAndroid

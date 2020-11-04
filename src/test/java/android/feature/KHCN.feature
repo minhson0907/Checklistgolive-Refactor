@@ -81,7 +81,7 @@ Feature: KHCN for soft otp
     And I go to Home
     And I do transaction with type is "Thanh toán" in Home page 1
     Then I pay "Nước" bill in "Hóa đơn sinh hoạt" service
-    And I do paying bill from "002704070016025" account to "Cấp nước Đồng Nai" provider with code ID is "50931000"
+    And I do paying bill from "002704070016025" account to "Cấp nước Thủ Đức" provider with code ID is "16021110302"
     Then I verify "Xác nhận" is displayed if bill is not paid or "Hóa đơn không còn nợ, vui lòng kiểm tra lại" is displayed if bill has been paid
     And I go to Home
     And I do transaction with type is "Thanh toán" in Home page 1
@@ -101,6 +101,7 @@ Feature: KHCN for soft otp
     Then I go to Home
     And I do transaction with type is "Thanh toán" in Home page 1
     Then I pay "Nạp tiền điện thoại" bill in "Nạp tiền" service
+    And I close permission popup
     And I get amount total before doing transaction in topup mobile
     And I topup "10,000 VND" into "0983234167" phone number
     Then I input soft HDBank with code is "112233"

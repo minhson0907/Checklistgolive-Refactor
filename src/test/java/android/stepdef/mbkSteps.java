@@ -365,14 +365,6 @@ public class mbkSteps extends TestBase {
             androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + type2 + "']")).click();
             waitElement(By.xpath("//android.widget.TextView[@text='" + type1 + "']"));
             androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + type1 + "']")).click();
-            // Không bắt bằng text dc vì mỗi popup trên mỗi device text khác nhau
-            try {
-                if (androidDriver.findElement(By.id("com.android.packageinstaller:id/permission_allow_button")).isDisplayed()) {
-                    androidDriver.findElement(By.id("com.android.packageinstaller:id/permission_allow_button")).click();
-                }
-            } catch (Exception e) {
-                e.getMessage();
-            }
         }
     }
 
@@ -1349,5 +1341,24 @@ public class mbkSteps extends TestBase {
             e.getMessage();
         }
         androidDriver.findElement(By.xpath("//android.widget.Button[@text='Xác nhận']")).click();
+    }
+
+    @And("^I close permission popup$")
+    public void iClosePermissionPopup() {
+        // Không bắt bằng text dc vì mỗi popup trên mỗi device text khác nhau
+        try {
+            if (androidDriver.findElement(By.id("com.android.packageinstaller:id/permission_allow_button")).isDisplayed()) {
+                androidDriver.findElement(By.id("com.android.packageinstaller:id/permission_allow_button")).click();
+            }
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        try {
+            if (androidDriver.findElement(By.id("com.android.permissioncontroller:id/permission_allow_button")).isDisplayed()) {
+                androidDriver.findElement(By.id("com.android.permissioncontroller:id/permission_allow_button")).click();
+            }
+        } catch (Exception e) {
+            e.getMessage();
+        }
     }
 }

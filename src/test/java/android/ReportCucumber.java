@@ -21,7 +21,7 @@ public class ReportCucumber {
         List<String> jsonFiles = new ArrayList<>();
         jsonFiles.add("target/test-classes/reports/result.json");
         String buildNumber = "1";
-        String projectName = "mBHDBank";
+        String projectName = "mBanking checklist";
         Configuration configuration = new Configuration(reportOutputDirectory, projectName);
 // optional configuration - check javadoc for details
         configuration.addPresentationModes(PresentationMode.RUN_WITH_JENKINS);

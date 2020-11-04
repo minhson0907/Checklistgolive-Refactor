@@ -91,7 +91,7 @@ public class TestBase {
         cap.setCapability("appPackage", "com.vnpay.hdbank");
         cap.setCapability("appActivity", "com.vnpay.hdbank.activity.SplashActivity");
         cap.setCapability("platformVersion", "10.0");
-        // prevent Android: don’t uninstall app before new session
+        // prevent Android: uninstall app before new session
         cap.setCapability("noReset", "true");
         try {
             androidDriver = new AndroidDriver(new URL("http://10.0.114.42:4723/wd/hub"), cap);
