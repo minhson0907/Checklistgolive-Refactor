@@ -75,13 +75,13 @@ Feature: KHCN for soft otp
     Given I open app
     When I login with "user_live" and "password"
     And I do transaction with type is "Thanh toán" in Home page 1
-    Then I pay "Điện" bill in "Hóa đơn sinh hoạt" service
-    And I do paying an electronic bill from "002704070016025" account with customer ID is "PK06000122470"
-    Then I verify "Xác nhận" is displayed if bill is not paid or "Hóa đơn không còn nợ, vui lòng kiểm tra lại" is displayed if bill has been paid
-    And I go to Home
+#    Then I pay "Điện" bill in "Hóa đơn sinh hoạt" service
+#    And I do paying an electronic bill from "002704070016025" account with customer ID is "PK06000122470"
+#    Then I verify "Xác nhận" is displayed if bill is not paid or "Hóa đơn không còn nợ, vui lòng kiểm tra lại" is displayed if bill has been paid
+#    And I go to Home
     And I do transaction with type is "Thanh toán" in Home page 1
     Then I pay "Nước" bill in "Hóa đơn sinh hoạt" service
-    And I do paying bill from "002704070016025" account to "Cấp nước Thủ Đức" provider with code ID is "16021110302"
+    And I do paying bill from "002704070016025" account to "Cấp nước Bến Thành " provider with code ID is "01072785320"
     Then I verify "Xác nhận" is displayed if bill is not paid or "Hóa đơn không còn nợ, vui lòng kiểm tra lại" is displayed if bill has been paid
     And I go to Home
     And I do transaction with type is "Thanh toán" in Home page 1
@@ -111,12 +111,12 @@ Feature: KHCN for soft otp
     Then I go to Home
     And I do transaction with type is "Thanh toán" in Home page 1
     Then I pay "" bill in "Topup cho đại lý VietjetAir" service
-    And I get amount total before doing transaction
+    And I get amount total before doing transaction for topup VietJetAir
     And I do paying bill from "002704070016025" account for "33000085" agent code with amount is "1"
     Then I input soft HDBank with code is "112233"
     And I get transferred amount in payment service
     Then I get amount total after doing transaction for topup VietJetAir
-    And I verify before total amount = after total amount + debit amount
+    And I verify before total amount = after total amount + topup VJA amount
 
   @KHCN-06 @UninstallAndroid
     Scenario: Thanh toán vé máy bay
@@ -140,7 +140,7 @@ Feature: KHCN for soft otp
     When I login with "user_live" and "password"
     And I do transaction with type is "Đặt phòng Khách sạn" in Home page 2
     And I looking for the hotel in "Hà Nội"
-    And I close permission popup
+#    And I close permission popup
     Then I book a hotel with email info is "sonvm3@hdbank.com.vn"
     Then I continue to book hotel
     Then I verify "Xác nhận" is displayed if bill is not paid or "Hóa đơn không còn nợ, vui lòng kiểm tra lại" is displayed if bill has been paid
@@ -256,7 +256,7 @@ Feature: KHCN for soft otp
     And I pay by QR
     Then I pay service with amount is "1"
     Then I input soft HDBank with code is "112233"
-    And I verify "Tên điểm bán" "Shop Ton That Tung" is displayed after doing transaction successfully
+    And I verify "Tên điểm bán" "RubyCoffee22LangHa" is displayed after doing transaction successfully
     Then I go to Home
     And I access in left menu
     And I create QR personal information

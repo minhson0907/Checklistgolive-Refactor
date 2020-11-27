@@ -56,22 +56,18 @@ public class transferAmountSteps extends TestBase {
 
     @And("^I verify before total amount = after total amount \\+ debit amount \\+ fee$")
     public void iVerifyBeforeTotalAmountAfterTotalAmountDebitAmountFee() throws Exception {
-//        System.out.println("***************after_transfer_account  " + d_afterAmount);
-//        System.out.println("***************before_transfer_account  " + d_beforeAmount);
-//        System.out.println("***************debit_Amount  " + d_transferredAmount);
-//        System.out.println("***************Fee  " + d_fee);
-        try {
-            assertEquals(d_beforeAmount, d_afterAmount + d_transferredAmount + d_fee);
-        } catch (AssertionError e) {
-            e.getMessage();
-        }
+        System.out.println("***************after_transfer_amount  " + d_afterAmount);
+        System.out.println("***************before_transfer_amount  " + d_beforeAmount);
+        System.out.println("***************debit_Amount  " + d_transferredAmount);
+        System.out.println("***************Fee  " + d_fee);
+        assertEquals(d_beforeAmount, d_afterAmount + d_transferredAmount + d_fee);
     }
 
     @And("^I verify before total amount = after total amount \\+ debit amount$")
     public void iVerifyBeforeTotalAmountAfterTotalAmountDebitAmount() throws Exception {
-//        System.out.println("***************after_transfer_account  " + d_afterAmount);
-//        System.out.println("***************before_transfer_account  " + d_beforeAmount);
-//        System.out.println("***************debit_Amount  " + d_transferredAmount);
+        System.out.println("***************after_transfer_amount  " + d_afterAmount);
+        System.out.println("***************before_transfer_amount  " + d_beforeAmount);
+        System.out.println("***************debit_Amount  " + d_transferredAmount);
         assertEquals(d_beforeAmount, d_afterAmount + d_transferredAmount);
     }
 }

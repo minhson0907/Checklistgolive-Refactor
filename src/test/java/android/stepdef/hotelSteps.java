@@ -9,6 +9,22 @@ public class hotelSteps extends TestBase {
 
     @And("^I looking for the hotel in \"([^\"]*)\"$")
     public void iLookingForTheHotelAroundMe(String location) throws Exception {
+        // Nokia N7.2 popup permission when booking hotel
+        try {
+            if (androidDriver.findElement(By.id("com.android.permissioncontroller:id/permission_allow_always_button")).isDisplayed()) {
+                androidDriver.findElement(By.id("com.android.permissioncontroller:id/permission_allow_always_button")).click();
+            }
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        // SamSung Note8 popup permission when booking hotel
+        try {
+            if (androidDriver.findElement(By.id("com.android.packageinstaller:id/permission_allow_button")).isDisplayed()) {
+                androidDriver.findElement(By.id("com.android.packageinstaller:id/permission_allow_button")).click();
+            }
+        } catch (Exception e) {
+            e.getMessage();
+        }
         waitElement(By.xpath("//android.widget.TextView[@text='Tên khách sạn hoặc điểm đến']"));
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Tên khách sạn hoặc điểm đến']")).click();
         waitElement(By.xpath("//android.widget.TextView[@text='Chọn điểm đến']"));

@@ -11,9 +11,18 @@ public class qrpaymentSteps extends TestBase {
     public void iTransferToOtherAccountByQRWithAmountAndDescriptionWithFeePayerIs(String amount, String description, String feePayer) throws Throwable {
         waitElement(By.xpath("//android.widget.ImageView[@index='2']"));
         androidDriver.findElement(By.xpath("//android.widget.ImageView[@index='2']")).click();
+        // SamSung Note8
         try {
-            if (androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='1']/android.widget.Button[@index='0']")).isDisplayed()) {
-                androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='1']/android.widget.Button[@index='0']")).click();
+            if (androidDriver.findElement(By.id("com.android.packageinstaller:id/permission_allow_button")).isDisplayed()) {
+                androidDriver.findElement(By.id("com.android.packageinstaller:id/permission_allow_button")).click();
+            }
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        // Nokia 7.2
+        try {
+            if (androidDriver.findElement(By.id("com.android.permissioncontroller:id/permission_allow_button")).isDisplayed()) {
+                androidDriver.findElement(By.id("com.android.permissioncontroller:id/permission_allow_button")).click();
             }
         } catch (Exception e) {
             e.getMessage();

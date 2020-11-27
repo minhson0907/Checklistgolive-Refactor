@@ -13,6 +13,8 @@ import javafx.scene.control.Tab;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.util.*;
@@ -209,7 +211,7 @@ public class mbkSteps extends TestBase {
 
     @And("^I close permission popup$")
     public void iClosePermissionPopup() {
-        // Không bắt bằng text dc vì mỗi popup trên mỗi device text khác nhau
+        // SamSung Note8
         try {
             if (androidDriver.findElement(By.id("com.android.packageinstaller:id/permission_allow_button")).isDisplayed()) {
                 androidDriver.findElement(By.id("com.android.packageinstaller:id/permission_allow_button")).click();
@@ -217,6 +219,7 @@ public class mbkSteps extends TestBase {
         } catch (Exception e) {
             e.getMessage();
         }
+        // Nokia 7.2
         try {
             if (androidDriver.findElement(By.id("com.android.permissioncontroller:id/permission_allow_button")).isDisplayed()) {
                 androidDriver.findElement(By.id("com.android.permissioncontroller:id/permission_allow_button")).click();
@@ -224,5 +227,6 @@ public class mbkSteps extends TestBase {
         } catch (Exception e) {
             e.getMessage();
         }
+
     }
 }
