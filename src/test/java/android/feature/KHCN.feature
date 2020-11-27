@@ -140,6 +140,7 @@ Feature: KHCN for soft otp
     When I login with "user_live" and "password"
     And I do transaction with type is "Đặt phòng Khách sạn" in Home page 2
     And I looking for the hotel in "Hà Nội"
+    And I close permission popup
     Then I book a hotel with email info is "sonvm3@hdbank.com.vn"
     Then I continue to book hotel
     Then I verify "Xác nhận" is displayed if bill is not paid or "Hóa đơn không còn nợ, vui lòng kiểm tra lại" is displayed if bill has been paid

@@ -8,16 +8,6 @@ import org.openqa.selenium.TakesScreenshot;
 
 public class Hooks extends TestBase {
 
-    @Before("@Web")
-    public void setUpWeb(){
-        initWeb();
-    }
-
-    @Before("@Android")
-    public void setUpAndroid(){
-        initAndroid();
-    }
-
     @Before("@UninstallAndroid")
     public void setUpUninstallAndroid(){initUninstallAndroid();}
 
@@ -26,24 +16,6 @@ public class Hooks extends TestBase {
 
     @Before("@AndroidApproval")
     public void setUpAndroidApproval(){AndroidApproval();}
-
-    @After("@Web")
-    public void tearDownWeb(Scenario scenario){
-        if (scenario.isFailed()){
-                final byte[] screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
-                scenario.embed(screenshot,"image/png");
-            }
-            driver.quit();
-    }
-
-    @After("@Android")
-    public void tearDownAndroid(Scenario scenario){
-        if (scenario.isFailed()){
-            final byte[] screenshot = ((TakesScreenshot)androidDriver).getScreenshotAs(OutputType.BYTES);
-            scenario.embed(screenshot,"image/png");
-        }
-        androidDriver.quit();
-    }
 
     @After("@UninstallAndroid")
     public void tearDownUninstallAndroid(Scenario scenario){

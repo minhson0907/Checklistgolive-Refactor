@@ -28,19 +28,13 @@ public class TestBase {
     protected static AndroidDriver<?> androidDriver;
     protected static WebDriver driver;
     protected static Properties prop;
-//    private File file = new File("config/test.properties");
-
-//    public TestBase() {
-//        try {
-//            prop = new Properties();
-//            FileInputStream ip = new FileInputStream(file);
-//            prop.load(ip);
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    String fileName = "app-release.apk";
+//    File appRelease = new File("D:\\Android SDK\\platforms\\" + fileName);
+    public double d_beforeAmount = 0;
+    public double d_afterAmount = 0;
+    public double d_fee = 0;
+    public double d_transferredAmount = 0;
+    public String reservationCode;
 
     public static void initWeb() {
         String browserType = prop.getProperty("browser.type");
@@ -60,26 +54,6 @@ public class TestBase {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
-    public static void initAndroid() {
-        String fileName = "app-release.apk";
-//        File appRelease = new File("D:\\Android SDK\\platforms\\" + fileName);
-        File appRelease = new File(System.getProperty("user.dir") + "\\drivers\\" + fileName);
-        DesiredCapabilities cap = new DesiredCapabilities();
-        cap.setCapability("app", appRelease.getAbsolutePath());
-        cap.setCapability("platformName", "android");
-        cap.setCapability("deviceName", "D0AA002307J82106840");
-        cap.setCapability("appPackage", "com.vnpay.hdbank");
-        cap.setCapability("appActivity", "com.vnpay.hdbank.activity.SplashActivity");
-        cap.setCapability("platformVersion", "10.0");
-        cap.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 300);
-        try {
-            androidDriver = new AndroidDriver(new URL("http://10.0.114.42:4723/wd/hub"), cap);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        androidDriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-    }
-
     public static void initUninstallAndroid() {
         String fileName = "app-release.apk";
 //        File appRelease = new File("D:\\Android SDK\\platforms\\" + fileName);
@@ -87,14 +61,14 @@ public class TestBase {
         DesiredCapabilities cap = new DesiredCapabilities();
         cap.setCapability("app", appRelease.getAbsolutePath());
         cap.setCapability("platformName", "android");
-        cap.setCapability("deviceName", "D0AA002307J82106840");
+        cap.setCapability("deviceName", "988a1b37463155383730");
         cap.setCapability("appPackage", "com.vnpay.hdbank");
         cap.setCapability("appActivity", "com.vnpay.hdbank.activity.SplashActivity");
-        cap.setCapability("platformVersion", "10.0");
+        cap.setCapability("platformVersion", "9");
         // prevent Android: uninstall app before new session
         cap.setCapability("noReset", "true");
         try {
-            androidDriver = new AndroidDriver(new URL("http://10.0.114.42:4723/wd/hub"), cap);
+            androidDriver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), cap);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -149,15 +123,9 @@ public class TestBase {
         Thread.sleep(1000);
     }
 
-    public void waitElementOnWeb(By webElement) throws Exception {
-        WebDriverWait wait = new WebDriverWait(driver, 30);
-        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(webElement));
-        Thread.sleep(1000);
-    }
-
     public void scrollToUp() {
         int x = androidDriver.manage().window().getSize().width / 2;
-        int start_y = (int) (androidDriver.manage().window().getSize().height * 0.8);
+        int start_y = (int) (androidDriver.manage().window().getSize().height * 0.75);
         int end_y = (int) (androidDriver.manage().window().getSize().height * 0.2);
         TouchAction dragNDrop = new TouchAction(androidDriver)
                 .press(PointOption.point(x, start_y)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(500)))
