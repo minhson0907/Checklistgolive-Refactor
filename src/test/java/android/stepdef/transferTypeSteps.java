@@ -50,14 +50,4 @@ public class transferTypeSteps extends TestBase {
         }
     }
 
-    @And("^As KHDN, I do transaction from \"([^\"]*)\" account with type is \"([^\"]*)\"$")
-    public void asKHDNiDoTransactionWithTypeIs(String accountNumber, String type) throws Exception {
-        waitElement(By.xpath("//android.widget.TextView[@text='" + type + "']"));
-        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + type + "']")).click();
-        waitElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.LinearLayout[@index='1']/android.widget.TextView"));
-        androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.LinearLayout[@index='1']/android.widget.TextView")).click();
-        waitElement(By.xpath("//android.widget.TextView[@text='" + DataHelper.getCellData(1, 4, "userdata") + "']"));
-//        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + accountNumber + "']")).click();
-        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + DataHelper.getCellData(1, 4, "userdata") + "']")).click();
-    }
 }

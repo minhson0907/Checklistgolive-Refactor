@@ -48,9 +48,11 @@ public class trainSteps extends TestBase {
     public void iChooseDepartingAndReturnTimeForOneWayTrain(String type) throws Exception {
         switch (type) {
             case "one way":
-                androidDriver.findElement(By.xpath("//android.support.v7.widget.RecyclerView[@index='1']/android.widget.LinearLayout[@index='0']/android.widget.FrameLayout/android.widget.ImageView")).click();
+                waitElement(By.xpath("//"+xpath+"[@index='1']/android.widget.LinearLayout[@index='0']"));
+                androidDriver.findElement(By.xpath("//"+xpath+"[@index='1']/android.widget.LinearLayout[@index='0']")).click();
                 androidDriver.findElement(By.xpath("//android.widget.Button[@text='TIẾP TỤC']")).click();
-                androidDriver.findElement(By.xpath("//android.support.v7.widget.RecyclerView[@index='0']/android.widget.LinearLayout[@index='0']/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.LinearLayout")).click();
+                waitElement(By.xpath("//"+xpath+"[@index='0']/android.widget.LinearLayout[@index='0']"));
+                androidDriver.findElement(By.xpath("//"+xpath+"[@index='0']/android.widget.LinearLayout[@index='0']")).click();
                 waitElement(By.xpath("//android.widget.LinearLayout[@index='2']/android.widget.LinearLayout[@index='12']/android.widget.FrameLayout[@index='0']/android.widget.ImageView"));
                 androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='2']/android.widget.LinearLayout[@index='12']/android.widget.FrameLayout[@index='0']/android.widget.ImageView")).click();
                 androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Chọn']")).click();

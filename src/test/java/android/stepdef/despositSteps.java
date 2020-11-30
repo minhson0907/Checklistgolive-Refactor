@@ -43,8 +43,8 @@ public class despositSteps extends TestBase {
     @Then("^I redeem an online saving account$")
     public void iRedeemAnOnlineSavingAccount() throws Exception {
         // Into detail account
-        waitElement(By.xpath("//android.support.v7.widget.RecyclerView[@index='3']/android.widget.FrameLayout[@index='4']"));
-        androidDriver.findElement(By.xpath("//android.support.v7.widget.RecyclerView[@index='3']/android.widget.FrameLayout[@index='4']")).click();
+        waitElement(By.xpath("//android.widget.FrameLayout[@index='4']"));
+        androidDriver.findElement(By.xpath("//android.widget.FrameLayout[@index='4']")).click();
         // Into tất toán
         waitElement(By.xpath("//android.widget.TextView[@text='Tất toán']"));
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Tất toán']")).click();

@@ -73,8 +73,7 @@ public class airplaneSteps extends TestBase {
                 scrollToUp();
                 androidDriver.findElement(By.xpath("//android.widget.Button[@text='Tìm chuyến bay']")).click();
                 waitElement(By.xpath("//android.widget.TextView[@text='Danh sách chuyến bay']"));
-                androidDriver.findElement(By.xpath("//android.support.v7.widget.RecyclerView/android.widget.LinearLayout[@index='0']")).click();
-                Thread.sleep(2000);
+                androidDriver.findElement(By.xpath("//"+xpath+"/android.widget.LinearLayout[@index='0']")).click();
                 waitElement(By.xpath("//android.widget.TextView[@text='Đặt vé']"));
                 androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Đặt vé']")).click();
                 break;

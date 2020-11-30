@@ -11,8 +11,8 @@ public class hotelSteps extends TestBase {
     public void iLookingForTheHotelAroundMe(String location) throws Exception {
         // Nokia N7.2 popup permission when booking hotel
         try {
-            if (androidDriver.findElement(By.id("com.android.permissioncontroller:id/permission_allow_always_button")).isDisplayed()) {
-                androidDriver.findElement(By.id("com.android.permissioncontroller:id/permission_allow_always_button")).click();
+            if (androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='1']/android.widget.Button[@index='0']")).isDisplayed()) {
+                androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='1']/android.widget.Button[@index='0']")).click();
             }
         } catch (Exception e) {
             e.getMessage();
@@ -34,8 +34,9 @@ public class hotelSteps extends TestBase {
 
     @Then("^I book a hotel with email info is \"([^\"]*)\"$")
     public void iBookAPopularHotelNearMe(String email) throws Exception {
-        waitElement(By.xpath("//android.support.v7.widget.RecyclerView[@index='0']/android.widget.LinearLayout[@index='0']"));
-        androidDriver.findElement(By.xpath("//android.support.v7.widget.RecyclerView[@index='0']/android.widget.LinearLayout[@index='0']")).click();
+        waitElement(By.xpath("//"+xpath+"[@index='0']/android.widget.LinearLayout[@index='0']"));
+//        androidDriver.findElement(By.xpath("//android.support.v7.widget.RecyclerView[@index='0']/android.widget.LinearLayout[@index='0']")).click();
+        androidDriver.findElement(By.xpath("//"+xpath+"[@index='0']/android.widget.LinearLayout[@index='0']")).click();
         waitElement(By.xpath("//android.widget.TextView[@text='Trả phòng: trước 12:00 - Nhận phòng: sau 14:00']"));
         scrollToUp();
         waitElement(By.xpath("//android.widget.TextView[@text='ĐẶT PHÒNG']"));

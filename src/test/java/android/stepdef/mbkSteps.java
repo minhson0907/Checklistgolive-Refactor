@@ -64,19 +64,6 @@ public class mbkSteps extends TestBase {
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + type + "']")).click();
     }
 
-    @And("^As KHDN, I do transaction with type is \"([^\"]*)\" in Home page 1$")
-    public void asKHDNIDoTransactionWithTypeIsInHomePage1(String type) throws Exception {
-        waitElement(By.xpath("//android.widget.TextView[contains(@text,'" + type + "')]"));
-//        try {
-//            if (androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.ImageView[@index='1']")).isDisplayed()) {
-//                androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.ImageView[@index='1']")).click();
-//            }
-//        } catch (Exception e) {
-//            e.getMessage();
-//        }
-        androidDriver.findElement(By.xpath("//android.widget.TextView[contains(@text,'" + type + "')]")).click();
-    }
-
     @And("^I choose \"([^\"]*)\"$")
     public void iChoose(String type) throws Exception {
         waitElement(By.xpath("//android.widget.TextView[@text='" + type + "']"));
@@ -221,8 +208,8 @@ public class mbkSteps extends TestBase {
         }
         // Nokia 7.2
         try {
-            if (androidDriver.findElement(By.id("com.android.permissioncontroller:id/permission_allow_button")).isDisplayed()) {
-                androidDriver.findElement(By.id("com.android.permissioncontroller:id/permission_allow_button")).click();
+            if (androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='1']/android.widget.Button[@index='0']")).isDisplayed()) {
+                androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='1']/android.widget.Button[@index='0']")).click();
             }
         } catch (Exception e) {
             e.getMessage();

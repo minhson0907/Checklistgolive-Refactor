@@ -52,9 +52,18 @@ public class qrpaymentSteps extends TestBase {
     public void iCreateQRPersonalInformation() throws Throwable {
         waitElement(By.xpath("//android.widget.TextView[@text='Tạo mã QR thông tin cá nhân']"));
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Tạo mã QR thông tin cá nhân']")).click();
+        // SamSung Note8
         try {
-            if (androidDriver.findElement(By.xpath("//android.widget.Button[@index='1']")).isDisplayed()) {
-                androidDriver.findElement(By.xpath("//android.widget.Button[@index='1']")).click();
+            if (androidDriver.findElement(By.id("com.android.packageinstaller:id/permission_allow_button")).isDisplayed()) {
+                androidDriver.findElement(By.id("com.android.packageinstaller:id/permission_allow_button")).click();
+            }
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        // Nokia 7.2
+        try {
+            if (androidDriver.findElement(By.id("com.android.permissioncontroller:id/permission_allow_button")).isDisplayed()) {
+                androidDriver.findElement(By.id("com.android.permissioncontroller:id/permission_allow_button")).click();
             }
         } catch (Exception e) {
             e.getMessage();

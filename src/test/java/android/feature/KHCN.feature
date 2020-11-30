@@ -75,10 +75,10 @@ Feature: KHCN for soft otp
     Given I open app
     When I login with "user_live" and "password"
     And I do transaction with type is "Thanh toán" in Home page 1
-#    Then I pay "Điện" bill in "Hóa đơn sinh hoạt" service
-#    And I do paying an electronic bill from "002704070016025" account with customer ID is "PK06000122470"
-#    Then I verify "Xác nhận" is displayed if bill is not paid or "Hóa đơn không còn nợ, vui lòng kiểm tra lại" is displayed if bill has been paid
-#    And I go to Home
+    Then I pay "Điện" bill in "Hóa đơn sinh hoạt" service
+    And I do paying an electronic bill from "002704070016025" account with customer ID is "PK06000122470"
+    Then I verify "Xác nhận" is displayed if bill is not paid or "Hóa đơn không còn nợ, vui lòng kiểm tra lại" is displayed if bill has been paid
+    And I go to Home
     And I do transaction with type is "Thanh toán" in Home page 1
     Then I pay "Nước" bill in "Hóa đơn sinh hoạt" service
     And I do paying bill from "002704070016025" account to "Cấp nước Bến Thành " provider with code ID is "01072785320"

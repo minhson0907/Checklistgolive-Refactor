@@ -69,7 +69,7 @@ Feature: KHDN
     Given I open app
     Then As input user, I login with "autotestnhap" and "abc123"
     And As KHDN, I do transaction from "045704070000966" account with type is "CK qua thẻ"
-    Then I transfer to "4987666802993375" card number, "1" amount and "AUTO TRANSFER BY CARD 04" description
+    Then I transfer to "9704366814567141015" card number, "1" amount and "AUTO TRANSFER BY CARD 04" description
     Then I input soft HDBank with code is "112233"
     And I verify "GIAO DỊCH ĐÃ ĐƯỢC CHẤP NHẬN VÀ ĐANG CHỜ DUYỆT" is displayed after doing transaction successfully
 
@@ -89,7 +89,7 @@ Feature: KHDN
     Then As input user, I login with "autotestnhap" and "abc123"
     And I do transaction with type is "Thanh toán" in Home page 1
     Then I pay "" bill in "Topup cho đại lý VietjetAir" service
-    And I do paying bill from "045704070000966" account for "33000056" agent code with amount is "1"
+    And As KHDN, I do paying bill from "045704070000966" account for "33000056" agent code with amount is "1"
     Then I input soft HDBank with code is "112233"
     And I verify "GIAO DỊCH ĐÃ ĐƯỢC CHẤP NHẬN VÀ ĐANG CHỜ DUYỆT" is displayed after doing transaction successfully
 
