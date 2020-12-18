@@ -30,7 +30,6 @@ public class TestBase {
     protected static WebDriver driver;
     protected static Properties prop;
     String fileName = "app-release.apk";
-//    File appRelease = new File("D:\\Android SDK\\platforms\\" + fileName);
     public double d_beforeAmount = 0;
     public double d_afterAmount = 0;
     public double d_fee = 0;
@@ -58,14 +57,13 @@ public class TestBase {
     }
 
     public static void initUninstallAndroid() {
-        String fileName = "app-release.apk";
-//        File appRelease = new File("D:\\Android SDK\\platforms\\" + fileName);
+        String fileName = "app-release.apk";;
         File appRelease = new File(System.getProperty("user.dir") + "\\drivers\\" + fileName);
         DesiredCapabilities cap = new DesiredCapabilities();
         cap.setCapability("app", appRelease.getAbsolutePath());
         cap.setCapability("platformName", "android");
 //        cap.setCapability("deviceName", "988a1b37463155383730");
-        cap.setCapability("deviceName", "988a1b37463155383730");
+        cap.setCapability("deviceName", "D0AA002307J82106840");
         cap.setCapability("appPackage", "com.vnpay.hdbank");
         cap.setCapability("appActivity", "com.vnpay.hdbank.activity.SplashActivity");
         cap.setCapability("platformVersion", "10");

@@ -123,7 +123,7 @@ Feature: KHCN for soft otp
     Given I open app
     When I login with "user_live" and "password"
     And I do transaction with type is "Đặt vé máy bay" in Home page 2
-    Then I book an one way domestic flight from "TP Hồ Chí Minh" to "Nha Trang" on Vietnam Airlines airline with method is Pay later
+    Then I book an one way domestic flight from "TP Hồ Chí Minh" to "Phú Quốc" on all airline with method is Pay later
     And I fill "Vo Minh Son" full name, "Nam" gender, "sonvm3@hdbank.com.vn" email, "0983234167" phone number with "AUTO DESCRIPTION" description
     And I check on use for Passenger information
     Then I confirm the above flight with method is Pay later
