@@ -21,7 +21,7 @@ Feature: Verify UI
     Then I verify "Chuyển khoản qua số thẻ" is displayed
     And I back to left menu
     And I tap on "Nạp tiền"
-    Then I tap on "ALLOW" button on popup
+    And I close permission popup
     And I verify "Nạp tiền điện thoại" is displayed
     And I back to left menu
     Then I tap on "Thanh toán hóa đơn"
