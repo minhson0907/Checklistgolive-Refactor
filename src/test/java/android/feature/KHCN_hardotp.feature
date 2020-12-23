@@ -1,5 +1,5 @@
-@golive @KHCN_sms
-Feature: KHCN for sms otp
+@golive @KHCN_hardotp
+Feature: KHCN for hardcode otp
 
   @KHCN_sms @UninstallAndroid
   Scenario: Kiểm tra hardcode sms với chuyển khoản trong
