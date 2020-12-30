@@ -9,8 +9,8 @@ public class qrpaymentSteps extends TestBase {
 
     @And("^I transfer to other account by QR with \"([^\"]*)\" amount and \"([^\"]*)\" description with fee payer is \"([^\"]*)\"$")
     public void iTransferToOtherAccountByQRWithAmountAndDescriptionWithFeePayerIs(String amount, String description, String feePayer) throws Throwable {
-        waitElement(By.xpath("//android.widget.ImageView[@index='2']"));
-        androidDriver.findElement(By.xpath("//android.widget.ImageView[@index='2']")).click();
+        waitElement(By.xpath("//android.widget.ImageView[@index='3']"));
+        androidDriver.findElement(By.xpath("//android.widget.ImageView[@index='3']")).click();
         // SamSung Note8
         try {
             if (androidDriver.findElement(By.id("com.android.packageinstaller:id/permission_allow_button")).isDisplayed()) {
@@ -74,8 +74,8 @@ public class qrpaymentSteps extends TestBase {
 
     @And("^I pay by QR$")
     public void iPayByQR() throws Exception {
-        waitElement(By.xpath("//android.widget.ImageView[@index='2']"));
-        androidDriver.findElement(By.xpath("//android.widget.ImageView[@index='2']")).click();
+        waitElement(By.xpath("//android.widget.ImageView[@index='3']"));
+        androidDriver.findElement(By.xpath("//android.widget.ImageView[@index='3']")).click();
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Thư viện ảnh']")).click();
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Photos']")).click();
         Thread.sleep(1000);
