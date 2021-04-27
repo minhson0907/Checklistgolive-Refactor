@@ -28,7 +28,7 @@ Feature: KHCN for soft otp
     When I login with "user_live" and "password"
     And I do transaction from "002704070016025" account with type is "CK ngoài HD"
     And I get amount total before doing transaction
-    Then I add new account with "ACB" bank, "249515269" account number and "VO MINH SON" receiver
+#    Then I add new account with "ACB" bank, "249515269" account number and "VO MINH SON" receiver
     And I update "249515269" account with type is Chuyển khoản thông thường
     Then I transfer to "ACB" bank, "249515269" account, "VO MINH SON" receiver, "1" amount and "AUTO EXTERNAL TRANSFER 04" description with fee payer is "Người chuyển trả"
     Then I input soft HDBank with code is "112233"
@@ -45,7 +45,7 @@ Feature: KHCN for soft otp
     When I login with "user_live" and "password"
     And I do transaction from "002704070016025" account with type is "CK ngoài HD"
     And I get amount total before doing transaction
-    Then I add new account with "ACB" bank, "249515269" account number and "VO MINH SON" receiver
+#    Then I add new account with "ACB" bank, "249515269" account number and "VO MINH SON" receiver
     And I update "249515269" account with type is Chuyển khoản tự động
     Then I transfer to "DONGA BANK" bank, "249515269" account, "VO MINH SON" receiver, "2" amount and "AUTO EXTERNAL TRANSFER 05" description with fee payer is "Người chuyển trả"
     Then I input soft HDBank with code is "112233"
@@ -138,7 +138,7 @@ Feature: KHCN for soft otp
     Scenario: Đặt phòng Khách sạn
     Given I open app
     When I login with "user_live" and "password"
-    And I do transaction with type is "Đặt phòng Khách sạn" in Home page 2
+    And I do transaction with type is "Đặt phòng Khách sạn" in Home page 3
     And I looking for the hotel in "Hà Nội"
 #    And I close permission popup
     Then I book a hotel with email info is "sonvm3@hdbank.com.vn"
@@ -149,7 +149,7 @@ Feature: KHCN for soft otp
   Scenario: Order a bouquet
     Given I open app
     When I login with "datathanhvan" and "abc123"
-    And I do transaction with type is "Đặt hoa" in Home page 2
+    And I do transaction with type is "Đặt hoa" in Home page 3
     Then I order a bouquet with name is "Yêu Xa"
     And I fill info as below
       | testauto@gmail.com | 174 Phan Dang Luu |

@@ -8,8 +8,8 @@ public class cardonlineSteps extends TestBase {
 
     @Then("^I (close|open) the online payment$")
     public void iCloseTheOnlinePayment(String type) throws Throwable {
-        waitElement(By.xpath("//android.widget.RelativeLayout[@index='0']/android.widget.FrameLayout[@index='0']/android.widget.ImageView"));
-        androidDriver.findElement(By.xpath("//android.widget.RelativeLayout[@index='0']/android.widget.FrameLayout[@index='0']/android.widget.ImageView")).click();
+        waitElement(By.xpath("//android.widget.LinearLayout[@index='1']//android.widget.RelativeLayout[@index='0']/android.widget.FrameLayout[@index='0']/android.widget.ImageView"));
+        androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='1']//android.widget.RelativeLayout[@index='0']/android.widget.FrameLayout[@index='0']/android.widget.ImageView")).click();
         waitElement(By.xpath("//android.widget.LinearLayout[@index='3']"));
         androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='3']")).click();
         switch (type) {

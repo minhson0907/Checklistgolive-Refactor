@@ -35,8 +35,8 @@ public class TestBase {
     public double d_fee = 0;
     public double d_transferredAmount = 0;
     public String reservationCode;
-    public String xpath ="android.support.v7.widget.RecyclerView";
-//    public String xpath ="androidx.recyclerview.widget.RecyclerView";
+//    public String xpath ="android.support.v7.widget.RecyclerView";
+    public String xpath ="*[contains(@class, 'widget.RecyclerView')]";
 
     public static void initWeb() {
         String browserType = prop.getProperty("browser.type");

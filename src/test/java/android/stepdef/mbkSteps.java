@@ -125,8 +125,8 @@ public class mbkSteps extends TestBase {
 
     @And("^I access in left menu$")
     public void iAccessInLeftMenu() throws Throwable {
-        waitElement(By.xpath("//android.widget.ImageView[@index='1']"));
-        androidDriver.findElement(By.xpath("//android.widget.ImageView[@index='1']")).click();
+        waitElement(By.xpath("//android.widget.ImageView[@index='2']"));
+        androidDriver.findElement(By.xpath("//android.widget.ImageView[@index='2']")).click();
 //        swipeToRight();
         Thread.sleep(1000);
         scrollToUp();

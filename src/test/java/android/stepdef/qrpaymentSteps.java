@@ -28,11 +28,11 @@ public class qrpaymentSteps extends TestBase {
             e.getMessage();
         }
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Thư viện ảnh']")).click();
-        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Photos']")).click();
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Ảnh']")).click();
         Thread.sleep(1000);
-        scrollToUp();
+//        scrollToUp();
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='QRLive']")).click();
-        androidDriver.findElement(By.xpath("//android.view.ViewGroup[@index='1']")).click();
+        androidDriver.findElement(By.xpath("//"+xpath+"/android.view.ViewGroup[@index='0']")).click();
         waitElement(By.xpath("//android.widget.EditText[@text='Số tiền *']"));
         androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Số tiền *']")).sendKeys(amount);
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Người chuyển trả']")).click();
@@ -77,11 +77,11 @@ public class qrpaymentSteps extends TestBase {
         waitElement(By.xpath("//android.widget.ImageView[@index='3']"));
         androidDriver.findElement(By.xpath("//android.widget.ImageView[@index='3']")).click();
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Thư viện ảnh']")).click();
-        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Photos']")).click();
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Ảnh']")).click();
         Thread.sleep(1000);
-        scrollToUp();
-        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Skype']")).click();
-        androidDriver.findElement(By.xpath("//android.view.ViewGroup[@index='1']")).click();
+//        scrollToUp();
+        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='QRLive']")).click();
+        androidDriver.findElement(By.xpath("//"+xpath+"/android.view.ViewGroup[@index='1']")).click();
     }
 
 }

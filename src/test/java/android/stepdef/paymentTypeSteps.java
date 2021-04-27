@@ -16,11 +16,20 @@ public class paymentTypeSteps extends TestBase {
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + type + "']")).click();
     }
 
-    @And("^I do transaction with type is \"([^\"]*)\" in Home page 2$")
-    public void iDoTransactionWithTypeIsInHomePage2(String type) throws Exception {
+    @And("^I do transaction with type is \"([^\"]*)\" in Home page (2|3)$")
+    public void iDoTransactionWithTypeIsInHomePage2(String type, String page) throws Exception {
 //        Thread.sleep(3000);
         waitElement(By.xpath("//android.widget.TextView[@text='Tài khoản']"));
-        swipeToLeft();
+        switch (page){
+            case "2":
+                swipeToLeft();
+                break;
+            case "3":
+                swipeToLeft();
+                Thread.sleep(1000);
+                swipeToLeft();
+                break;
+        }
         waitElement(By.xpath("//android.widget.TextView[@text='" + type + "']"));
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + type + "']")).click();
     }
@@ -132,7 +141,9 @@ public class paymentTypeSteps extends TestBase {
 //        androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + fromAccount + "']")).click();
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='" + DataHelper.getCellData(1, 1, "userdata") + "']")).click();
         // Input AccountTo
-        androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Nhập tài khoản thẻ']")).sendKeys(toAccount);
+//        androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Nhập tài khoản thẻ']")).sendKeys(toAccount);
+        androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='1']/android.widget.FrameLayout[@index='0']/android.widget.EditText")).clear();
+        androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='1']/android.widget.FrameLayout[@index='0']/android.widget.EditText")).sendKeys(toAccount);
         // Input amount
         androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Nhập số tiền']")).sendKeys(amount);
         // Tap on Continue btn

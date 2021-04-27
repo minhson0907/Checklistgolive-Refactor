@@ -18,8 +18,8 @@ public class transferSteps extends TestBase {
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Ngân hàng']")).click();
         waitElement(By.xpath("//android.widget.TextView[@text='Danh sách ngân hàng']"));
         androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Tìm kiếm ngân hàng']")).sendKeys(bank);
-        waitElement(By.className(xpath));
-        androidDriver.findElement(By.className(xpath)).click();
+        waitElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.TextView[@text='"+bank+"']"));
+        androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='0']/android.widget.TextView[@text='"+bank+"']")).click();
         waitElement(By.xpath("//android.widget.EditText[@text='Nhập số tài khoản']"));
         androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Nhập số tài khoản']")).sendKeys(accountNumber);
         androidDriver.findElement(By.xpath("//android.widget.Button[@text='Lưu lại']")).click();
