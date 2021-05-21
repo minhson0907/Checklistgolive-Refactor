@@ -64,6 +64,7 @@ public class bouquetSteps extends TestBase {
         waitElement(By.xpath("//android.widget.TextView[@text='Đặt hàng']"));
         androidDriver.findElement(By.xpath("//android.view.ViewGroup[@index='0']/android.view.ViewGroup[@index='0']/android.widget.ImageView[@index='1']")).click();
         waitElement(By.xpath("//android.widget.TextView[@text='Chọn']"));
+        scrollPickDate();
         androidDriver.findElement(By.xpath("//android.widget.TextView[@text='Chọn']")).click();
         androidDriver.findElement(By.xpath("//android.view.ViewGroup[@index='0']/android.view.ViewGroup[@index='1']/android.widget.ImageView[@index='1']")).click();
         waitElement(By.xpath("//android.widget.TextView[@text='Chọn']"));

@@ -149,6 +149,18 @@ public class TestBase {
         dragNDrop.perform();
     }
 
+    public void scrollPickDate(){
+
+        int x = androidDriver.manage().window().getSize().width / 2;
+        int start_y = (int) (androidDriver.manage().window().getSize().height * 0.6);
+        int end_y = (int) (androidDriver.manage().window().getSize().height * 0.55);
+        TouchAction dragNDrop = new TouchAction(androidDriver)
+                .press(PointOption.point(x, start_y)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(500)))
+                .moveTo(PointOption.point(x, end_y))
+                .release();
+        dragNDrop.perform();
+    }
+
     public void scrollToDown() {
         int x = androidDriver.manage().window().getSize().width / 2;
         int start_y = (int) (androidDriver.manage().window().getSize().height * 0.20);

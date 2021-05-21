@@ -5,7 +5,7 @@ Feature: KHCN for soft otp
   Scenario: Chuyển khoản trong
     Given I open app
     When I login with "user_live" and "password"
-    And I do transaction from "002704070016025" account with type is "CK trong HD"
+    And I do transaction from "002704070016023" account with type is "CK trong HD"
     And I get amount total before doing transaction
     Then I transfer to "002704070011069" account, "2" amount and "AUTO DESCRIPTION" description with fee payer is "Người chuyển trả"
     Then I input soft HDBank with code is "112233"
@@ -139,7 +139,7 @@ Feature: KHCN for soft otp
     Given I open app
     When I login with "user_live" and "password"
     And I do transaction with type is "Đặt phòng Khách sạn" in Home page 3
-    And I looking for the hotel in "Hà Nội"
+    And I looking for the hotel in "Đà Nẵng"
 #    And I close permission popup
     Then I book a hotel with email info is "sonvm3@hdbank.com.vn"
     Then I continue to book hotel
@@ -194,7 +194,7 @@ Feature: KHCN for soft otp
     Scenario: Đặt vé xem phim
     Given I open app
     When I login with "user_live" and "password"
-    And I do transaction with type is "Đặt vé Xem phim" in Home page 2
+    And I do transaction with type is "Đặt vé Xem phim" in Home page 3
     And I buy a film ticket at "BHD Star Cineplex" cinema
     Then I verify "Xác nhận" is displayed if bill is not paid or "Hóa đơn không còn nợ, vui lòng kiểm tra lại" is displayed if bill has been paid
 
@@ -223,7 +223,7 @@ Feature: KHCN for soft otp
     Given I open app
     When I login with "user_live" and "password"
     And I do transaction with type is "Thẻ" in Home page 1
-    Then I pay card from "002704070016025" to "812550023530" with amount is "1"
+    Then I pay card from "002704070016025" to "818959621100" with amount is "1"
     Then I input soft HDBank with code is "112233"
     And I verify "GIAO DỊCH THÀNH CÔNG" is displayed
 

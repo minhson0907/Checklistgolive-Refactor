@@ -198,14 +198,6 @@ public class mbkSteps extends TestBase {
 
     @And("^I close permission popup$")
     public void iClosePermissionPopup() {
-        // SamSung Note8
-        try {
-            if (androidDriver.findElement(By.id("com.android.packageinstaller:id/permission_allow_button")).isDisplayed()) {
-                androidDriver.findElement(By.id("com.android.packageinstaller:id/permission_allow_button")).click();
-            }
-        } catch (Exception e) {
-            e.getMessage();
-        }
         // Nokia 7.2
         try {
             if (androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='1']/android.widget.Button[@index='0']")).isDisplayed()) {
