@@ -63,7 +63,7 @@ public class TestBase {
         cap.setCapability("app", appRelease.getAbsolutePath());
         cap.setCapability("platformName", "android");
 //        cap.setCapability("deviceName", "988a1b37463155383730");
-        cap.setCapability("deviceName", "03163f360404");
+        cap.setCapability("deviceName", "R58NC349GVZ");
         cap.setCapability("appPackage", "com.vnpay.hdbank");
         cap.setCapability("appActivity", "com.vnpay.hdbank.activity.SplashActivity");
         cap.setCapability("platformVersion", "11");
@@ -188,8 +188,8 @@ public class TestBase {
     public void swipeToRight() {
         Dimension size = androidDriver.manage().window().getSize();
         int startY = (int) (size.height / 2);
-        int startX = (int) (size.width * 0.05);
-        int endX = (int) (size.width * 0.90);
+        int startX = (int) (size.width * 0.20);
+        int endX = (int) (size.width * 0.80);
         TouchAction dragNDrop = new TouchAction(androidDriver)
                 .press(PointOption.point(startX, startY)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(500)))
                 .moveTo(PointOption.point(endX, startY))
