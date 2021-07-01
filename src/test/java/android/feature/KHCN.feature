@@ -124,7 +124,7 @@ Feature: KHCN for soft otp
     When I login with "user_live" and "password"
     And I do transaction with type is "Đặt vé máy bay" in Home page 2
     Then I book an one way domestic flight from "TP Hồ Chí Minh" to "Phú Quốc" on all airline with method is Pay later
-    And I fill "Vo Minh Son" full name, "Nam" gender, "sonvm3@hdbank.com.vn" email, "0983234167" phone number with "AUTO DESCRIPTION" description
+    And I fill "Vo Minh Son" full name, "Nam" gender, "sonvm3@hdbank.com.vn" email, "0946780411" phone number with "AUTO DESCRIPTION" description
     And I check on use for Passenger information
     Then I confirm the above flight with method is Pay later
     And I get reservation code
@@ -138,7 +138,7 @@ Feature: KHCN for soft otp
     Scenario: Đặt phòng Khách sạn
     Given I open app
     When I login with "user_live" and "password"
-    And I do transaction with type is "Đặt phòng Khách sạn" in Home page 3
+    And I do transaction with type is "Đặt phòng Khách sạn" in Home page 2
     And I looking for the hotel in "Đà Nẵng"
 #    And I close permission popup
     Then I book a hotel with email info is "sonvm3@hdbank.com.vn"
@@ -183,7 +183,7 @@ Feature: KHCN for soft otp
     When I login with "user_live" and "password"
     And I do transaction with type is "Đặt vé máy bay" in Home page 2
     Then I book an one way domestic flight from "TP Hồ Chí Minh" to "Phú Quốc" on all airline with method is Pay now
-    And I fill "Vo Minh Son" full name, "Nam" gender, "sonvm3@hdbank.com.vn" email, "0983234167" phone number with "AUTO DESCRIPTION" description
+    And I fill "Vo Minh Son" full name, "Nam" gender, "sonvm3@hdbank.com.vn" email, "0946780411" phone number with "AUTO DESCRIPTION" description
     And I check on use for Passenger information
     Then I confirm the above flight with method is Pay now
     And I scroll up page

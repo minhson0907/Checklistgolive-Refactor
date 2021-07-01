@@ -63,10 +63,10 @@ public class TestBase {
         cap.setCapability("app", appRelease.getAbsolutePath());
         cap.setCapability("platformName", "android");
 //        cap.setCapability("deviceName", "988a1b37463155383730");
-        cap.setCapability("deviceName", "D0AA002307J82106840");
+        cap.setCapability("deviceName", "03163f360404");
         cap.setCapability("appPackage", "com.vnpay.hdbank");
         cap.setCapability("appActivity", "com.vnpay.hdbank.activity.SplashActivity");
-        cap.setCapability("platformVersion", "10");
+        cap.setCapability("platformVersion", "11");
         // prevent Android: uninstall app before new session
         cap.setCapability("noReset", "true");
 //        Note: If the noReset capability is true, this capability doesn't work.

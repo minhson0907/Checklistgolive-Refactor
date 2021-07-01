@@ -15,16 +15,16 @@ public class userSteps extends TestBase {
 
     @Then("^I login with \"([^\"]*)\" and \"([^\"]*)\"$")
     public void iLoginWithAnd(String user, String pass) throws Exception {
-        try {
-            if (androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='8']/android.widget.RelativeLayout[@index='0']/android.widget.ImageView[@index='2']")).isDisplayed()) {
-                // Tap on icon x in text box user name
-                androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='8']/android.widget.RelativeLayout[@index='0']/android.widget.ImageView[@index='2']")).click();
-            }
-        } catch (Exception e) {
-            e.getMessage();
-        }
-        androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Tài khoản']")).clear();
-        androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Tài khoản']")).sendKeys(DataHelper.getCellData(1, 0, "userdata"));
+//        try {
+//            if (androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='8']/android.widget.RelativeLayout[@index='0']/android.widget.ImageView[@index='2']")).isDisplayed()) {
+//                // Tap on icon x in text box user name
+//                androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='8']/android.widget.RelativeLayout[@index='0']/android.widget.ImageView[@index='2']")).click();
+//            }
+//        } catch (Exception e) {
+//            e.getMessage();
+//        }
+//        androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Tài khoản']")).clear();
+//        androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Tài khoản']")).sendKeys(DataHelper.getCellData(1, 0, "userdata"));
         androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Mật khẩu']")).clear();
         byte[] decodeBytes = Base64.getDecoder().decode(DataHelper.getCellData(1, 5, "userdata").getBytes());
         androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Mật khẩu']")).sendKeys(new String(decodeBytes));
@@ -33,32 +33,32 @@ public class userSteps extends TestBase {
 
     @When("^As (input|approval|sms) user, I login with \"([^\"]*)\" and \"([^\"]*)\"$")
     public void asKHDNILoginWithAnd(String type, String user, String pass) throws Exception {
-        try {
-            if (androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='8']/android.widget.RelativeLayout[@index='0']/android.widget.ImageView[@index='2']")).isDisplayed()) {
-                // Tap on icon x in text box user name
-                androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='8']/android.widget.RelativeLayout[@index='0']/android.widget.ImageView[@index='2']")).click();
-            }
-        } catch (Exception e) {
-            e.getMessage();
-        }
+//        try {
+//            if (androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='8']/android.widget.RelativeLayout[@index='0']/android.widget.ImageView[@index='2']")).isDisplayed()) {
+//                // Tap on icon x in text box user name
+//                androidDriver.findElement(By.xpath("//android.widget.LinearLayout[@index='8']/android.widget.RelativeLayout[@index='0']/android.widget.ImageView[@index='2']")).click();
+//            }
+//        } catch (Exception e) {
+//            e.getMessage();
+//        }
         switch (type) {
             case "input":
-                androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Tài khoản']")).clear();
-                androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Tài khoản']")).sendKeys(DataHelper.getCellData(1, 2, "userdata"));
+//                androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Tài khoản']")).clear();
+//                androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Tài khoản']")).sendKeys(DataHelper.getCellData(1, 2, "userdata"));
                 androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Mật khẩu']")).clear();
                 byte[] decodeBytes1 = Base64.getDecoder().decode(DataHelper.getCellData(1, 6, "userdata").getBytes());
                 androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Mật khẩu']")).sendKeys(new String(decodeBytes1));
                 break;
             case "approval":
-                androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Tài khoản']")).clear();
-                androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Tài khoản']")).sendKeys(DataHelper.getCellData(1, 3, "userdata"));
+//                androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Tài khoản']")).clear();
+//                androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Tài khoản']")).sendKeys(DataHelper.getCellData(1, 3, "userdata"));
                 androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Mật khẩu']")).clear();
                 byte[] decodeBytes2 = Base64.getDecoder().decode(DataHelper.getCellData(1, 7, "userdata").getBytes());
                 androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Mật khẩu']")).sendKeys(new String(decodeBytes2));
                 break;
             default:
-                androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Tài khoản']")).clear();
-                androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Tài khoản']")).sendKeys(DataHelper.getCellData(2, 0, "userdata"));
+//                androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Tài khoản']")).clear();
+//                androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Tài khoản']")).sendKeys(DataHelper.getCellData(2, 0, "userdata"));
                 androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Mật khẩu']")).clear();
                 byte[] decodeBytes3 = Base64.getDecoder().decode(DataHelper.getCellData(2, 5, "userdata").getBytes());
                 androidDriver.findElement(By.xpath("//android.widget.EditText[@text='Mật khẩu']")).sendKeys(new String(decodeBytes3));
